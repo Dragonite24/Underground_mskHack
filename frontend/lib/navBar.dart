@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'main.dart';
-import 'pages/chat/chatlist.dart';
-import 'pages/lounge/loungeMain.dart';
-import 'pages/search/searchmain.dart';
-import 'setting/settingmain.dart';
+import 'pages/signIn/profile/profileDate.dart';
 
 class UndergroundNavbar extends StatefulWidget {
   final bool isFromSignUp;
@@ -43,7 +39,7 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
           ratingKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 3:
-          settingsKey.currentState.popUntil((r) => r.isFirst);
+          profileKey.currentState.popUntil((r) => r.isFirst);
           break;
       }
     } else
@@ -66,7 +62,7 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                   navbarItem("История", "main", 0),
                   navbarItem("Карта", "map", 1),
                   navbarItem("Рейтинг", "rating", 2),
-                  navbarItem("Настройки", "settings", 3)
+                  navbarItem("Профиль", "profile", 3)
                 ],
                 onTap: onItemTapped,
               ),
@@ -76,22 +72,21 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                   case 0:
                     currentPage = CupertinoTabView(
                         navigatorKey: mainKey,
-                        builder: (buildContext) => SearchMain());
+                        builder: (buildContext) => Profile());
                     break;
                   case 1:
                     currentPage = CupertinoTabView(
-                        navigatorKey: mapKey,
-                        builder: (context) => LoungeMain());
+                        navigatorKey: mapKey, builder: (context) => Profile());
                     break;
                   case 2:
                     currentPage = CupertinoTabView(
                         navigatorKey: ratingKey,
-                        builder: (context) => ChatList());
+                        builder: (context) => Profile());
                     break;
                   case 3:
                     currentPage = CupertinoTabView(
-                        navigatorKey: settingsKey,
-                        builder: (buildContext) => SettingMain());
+                        navigatorKey: profileKey,
+                        builder: (buildContext) => Profile());
                     break;
                 }
                 return currentPage;

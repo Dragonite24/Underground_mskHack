@@ -36,7 +36,34 @@ flutter:
   assets:
     - images/
     - images/text_field/
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+
   uses-material-design: true
+
+  fonts:
+  - family: Black  
+    fonts:
+    - asset: fonts/TTFirsNeue-Black.ttf
+  - family: Bold  
+    fonts:
+    - asset: fonts/TTFirsNeue-Bold.ttf
+  - family: DemiBold 
+    fonts:
+    - asset: fonts/TTFirsNeue-DemiBold.ttf
+  - family: ExtraBold  
+    fonts:
+    - asset: fonts/TTFirsNeue-ExtraBold.ttf
+  - family: ExtraLight
+    fonts:
+    - asset: fonts/TTFirsNeue-ExtraLight.ttf
+  - family: Medium 
+    fonts:
+    - asset: fonts/TTFirsNeue-Medium.ttf
+  - family: Regular  
+    fonts:
+    - asset: fonts/TTFirsNeue-Regular.ttf
+  - family: Thin 
+    fonts:
+    - asset: fonts/TTFirsNeue-Thin.ttf
+  - family: Light 
+    fonts:
+    - asset: fonts/TTFirsNeue-Light.ttf

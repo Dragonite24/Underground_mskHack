@@ -1,3 +1,4 @@
+import 'package:Underground/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,6 +14,7 @@ class UndergroundScaffold extends StatelessWidget {
       /// чтобы вёрстка не падала
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
       child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: appBar,
 
           ///  Страница скроллится для того, чтобы при разделении экрана на два
@@ -48,30 +50,34 @@ class UndergroundTextField extends StatelessWidget {
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
             width: double.infinity,
-            padding: EdgeInsets.only(left: 19.2),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Color(0xffEAEFF3))),
             child: Row(children: [
-              SvgPicture.asset("images/text_field/$icon.svg",
-                  width: 15.75, height: 12.38),
-              SizedBox(width: 13.2),
               Container(
-                  width: MediaQuery.of(context).size.width - 101,
-                  child: TextField(
-                      controller: controller,
-                      onChanged: onChanged,
-                      obscureText: isPassword,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixText: isPhone ? '+7 (' : null,
-                          hintText: isPhone ? "___) ___-__-__" : hintText,
-                          hintStyle: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ))))
+                width: MediaQuery.of(context).size.width - 100,
+                child: TextField(
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 16),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.grey[300],
+                          width: 1.0,
+                        )),
+                    labelStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15.0,
+                        fontFamily: Fonts().light),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Colors.grey[300],
+                        width: 1.0,
+                      ),
+                    ),
+                    labelText: hintText,
+                  ),
+                ),
+              )
             ])),
         Text(errorText,
             style: TextStyle(
@@ -96,7 +102,7 @@ class UndergroundButton extends StatelessWidget {
           opacity: isOpacity ? 1 : 0.5,
           child: Container(
               width: double.infinity,
-              height: 52,
+              height: 50,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
@@ -107,14 +113,15 @@ class UndergroundButton extends StatelessWidget {
                     BoxShadow(
                       offset: Offset(0.0, 14.0),
                       blurRadius: 15.0,
-                      color: Color(0x850C9E18),
+                      color: Color(0x420C9E18),
                     )
                   ]),
               child: Center(
                   child: Text(text,
                       style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
-                          color: Colors.white))))));
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              color: Color(0xFF333333))
+                          .copyWith(fontFamily: Fonts().light))))));
 }

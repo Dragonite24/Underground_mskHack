@@ -1,12 +1,8 @@
-import 'package:Underground/pages/lounge/loungeMain.dart';
-import 'package:Underground/pages/search/searchmain.dart';
-import 'package:Underground/setting/settingmain.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'navBar.dart';
-import 'pages/account/login.dart';
-import 'pages/chat/chatlist.dart';
+import 'pages/signIn/login.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +11,7 @@ final GlobalKey<UndergroundNavbarState> navbarKey =
 final GlobalKey<NavigatorState> mainKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> mapKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> ratingKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> settingsKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> profileKey = GlobalKey<NavigatorState>();
 
 GlobalKey<NavigatorState> currentNavigatorKey(index) {
   switch (index) {
@@ -29,7 +25,7 @@ GlobalKey<NavigatorState> currentNavigatorKey(index) {
       return ratingKey;
       break;
     case 3:
-      return settingsKey;
+      return profileKey;
       break;
   }
   return null;
