@@ -1,5 +1,6 @@
 import 'package:Underground/http.dart';
 import 'package:Underground/widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../indicator.dart';
@@ -63,29 +64,29 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
               body: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.1),
-                        Text("Войти",
-                            style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                color: Colors.black)),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
+                            height: MediaQuery.of(context).size.height * 0.2),
                         Text("Добро пожаловать!",
                             style: TextStyle(
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: Colors.grey)),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 26,
+                                color: Color(0xFF333333))),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
+                            height: MediaQuery.of(context).size.height * 0.02),
+                        Text("Войдите чтобы продолжить",
+                            style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 14,
+                                color: Color(0xFF333333))),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05),
                         UndergroundTextField(
-                          text: "Электронная почта",
+                          text: "",
                           controller: email,
                           icon: "email",
                           hintText: "Введите электронную почту",
@@ -93,7 +94,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.01),
                         UndergroundTextField(
-                            text: "Пароль",
+                            text: "",
                             controller: password,
                             icon: "password",
                             hintText: "Введите пароль",
@@ -146,30 +147,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                       }
                                     }))),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
-                        GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUp())),
-                            child: Container(
-                                width: double.infinity,
-                                height: 52,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: hide
-                                            ? Colors.red
-                                            : Color(0xffEAEFF3)),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                    child: Text(hide ? "" : "Создать аккаунт",
-                                        style: TextStyle(
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                            color: Colors.black))))),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
+                            height: MediaQuery.of(context).size.height * 0.05),
                         RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
@@ -177,28 +155,43 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
-                                    color: Colors.grey),
+                                    color: Color(0xFF333333)),
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: hide
-                                        ? ""
-                                        : 'Нажимая “Войти” или “Создать аккаунт”, вы соглашаетесь с нашими ',
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignUp())),
+                                      text: 'Забыли пароль?',
+                                      style:
+                                          TextStyle(color: Color(0xFF16FF00)))
+                                ])),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05),
+                        RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                                style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Color(0xFF333333)),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'Нет аккаунта? ',
                                   ),
                                   TextSpan(
-                                      text: hide ? "" : 'Условиями',
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignUp())),
+                                      text: 'Создать аккаунт',
                                       style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                      )),
-                                  TextSpan(
-                                    text: hide
-                                        ? ""
-                                        : '. Узнайте, как мы обрабатываем ваши данные, ознакомившись с ',
-                                  ),
-                                  TextSpan(
-                                      text: hide
-                                          ? ""
-                                          : 'Политикой в отношении файлов cookie.',
-                                      style: TextStyle(
+                                          color: Color(0xFF16FF00),
                                           decoration: TextDecoration.underline))
                                 ]))
                       ]))));
