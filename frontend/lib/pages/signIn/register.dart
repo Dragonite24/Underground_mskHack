@@ -107,7 +107,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                     .then(
                                   (val) async {
                                     if (val != null) {
-                                      prefs.setString('token', val);
+                                      prefs.setString('token', val.access);
                                       Navigator.push<void>(
                                           context,
                                           MaterialPageRoute<void>(

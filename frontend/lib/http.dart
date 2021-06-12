@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:async';
+import 'package:Underground/models/token.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 
@@ -31,7 +32,7 @@ class Http {
     }
   }
 
-  Future<String> getToken(String password, username) async {
+  Future<GetToken> getToken(String password, username) async {
     var body =
         json.encoder.convert({"password": password, "username": username});
     final response = await http.post(
@@ -39,15 +40,15 @@ class Http {
       body: body,
       headers: {'Content-type': 'application/json'},
     );
-    print(body);
+    GetToken token;
     if (response.statusCode < 300) {
       log('getToken STATUS CODE: ' + response.statusCode.toString());
-      log(response.body);
-      return response.body;
+      token = getTokenFromJson(response.body);
+      return token;
     } else {
       log('getToken STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
-      return response.body;
+      return token;
     }
   }
 

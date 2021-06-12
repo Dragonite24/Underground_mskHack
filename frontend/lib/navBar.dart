@@ -1,4 +1,5 @@
 import 'package:Underground/pages/chat/chatlist.dart';
+import 'package:Underground/pages/maps/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,7 +23,7 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
 
   CupertinoTabController _controller;
 
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   double height = 19.35;
 
@@ -30,7 +31,7 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
     if (index == _currentIndex) {
       switch (index) {
         case 0:
-          mainKey.currentState.popUntil((r) => r.isFirst);
+          mapKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 1:
           projectsKey.currentState.popUntil((r) => r.isFirst);
@@ -75,8 +76,8 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                 switch (index) {
                   case 0:
                     currentPage = CupertinoTabView(
-                        navigatorKey: mainKey,
-                        builder: (buildContext) => Profile());
+                        navigatorKey: mapKey,
+                        builder: (buildContext) => MapsView());
                     break;
                   case 1:
                     currentPage = CupertinoTabView(

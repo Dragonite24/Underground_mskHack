@@ -8,7 +8,7 @@ void main() => runApp(MyApp());
 
 final GlobalKey<UndergroundNavbarState> navbarKey =
     GlobalKey<UndergroundNavbarState>();
-final GlobalKey<NavigatorState> mainKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> mapKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> projectsKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> cardsKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> chatKey = GlobalKey<NavigatorState>();
@@ -18,7 +18,7 @@ final GlobalKey<NavigatorState> profileKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> currentNavigatorKey(index) {
   switch (index) {
     case 0:
-      return mainKey;
+      return mapKey;
       break;
     case 1:
       return projectsKey;
