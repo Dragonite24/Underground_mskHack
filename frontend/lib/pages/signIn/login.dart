@@ -2,6 +2,9 @@ import 'package:Underground/const.dart';
 import 'package:Underground/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../http.dart';
+import '../../main.dart';
+import '../../snackbar.dart';
 import 'register.dart';
 
 class LogIn extends StatefulWidget {
@@ -17,7 +20,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
   bool isLoading = true, hide = false;
   bool canGetEmail = false, canGetPhoneNumber = false, canGetPassword = false;
 
-  TextEditingController email = TextEditingController(),
+  TextEditingController username = TextEditingController(),
       password = TextEditingController();
 
   @override
@@ -49,7 +52,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                             .copyWith(fontFamily: Fonts().light)),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     UndergroundTextField(
-                      controller: email,
+                      controller: username,
                       icon: "email",
                       hintText: "Логин",
                     ),
@@ -65,16 +68,18 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                         onTap: () {
                           bool canSignUp = true;
                           if (canSignUp) {
-                            // Http()
-                            //     .sendEmail(email.text, password.text)
-                            //     .then((value) async {
-                            //   if (value) {
-                            //     setState(() {
-                            //       //hide = true;
-                            //     });
-                            //   } else
-                            //     setState(() {});
-                            // });
+                            Http()
+                                .getToken(username.text, password.text)
+                                .then((value) async {
+                              if (value != null) {
+                                Navigator.push<void>(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            MyHomePage()));
+                              } else
+                                Snackbar.show(context);
+                            });
                           }
                         }),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),

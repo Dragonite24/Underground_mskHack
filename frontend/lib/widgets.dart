@@ -121,7 +121,7 @@ class UndergroundButton extends StatelessWidget {
                       style: TextStyle(
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w600,
-                              fontSize: 24,
+                              fontSize: 20,
                               color: Color(0xFF333333))
                           .copyWith(fontFamily: Fonts().light))))));
 }
