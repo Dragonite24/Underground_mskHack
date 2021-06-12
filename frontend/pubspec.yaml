@@ -35,6 +35,7 @@ dev_dependencies:
 flutter:
   assets:
     - images/
+    - images/navBar/
     - images/text_field/
 
   uses-material-design: true

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomButtonData {
-  IconData iconData;
+  var iconData;
   Color iconColor;
-  BottomButtonData(this.iconData, this.iconColor);
+  BottomButtonData(this.iconData, {this.iconColor});
 }
 
 class UserData {
@@ -101,10 +102,13 @@ List<UserData> dummyUserDataListInLounge() {
   ];
 }
 
-List<BottomButtonData> bottomIconDataList = [
-  BottomButtonData(FontAwesomeIcons.redoAlt, Colors.yellow[800]),
-  BottomButtonData(FontAwesomeIcons.times, Colors.redAccent),
-  BottomButtonData(FontAwesomeIcons.solidStar, Colors.blue[400]),
-  BottomButtonData(FontAwesomeIcons.solidHeart, Colors.green[400]),
-  BottomButtonData(FontAwesomeIcons.bolt, Colors.purple[400]),
+// List<BottomButtonData> bottomIconDataList = [
+//   BottomButtonData(FontAwesomeIcons.times, Colors.redAccent),
+//   BottomButtonData(FontAwesomeIcons.solidStar, Colors.blue[400]),
+//   BottomButtonData(FontAwesomeIcons.solidHeart, Colors.green[400]),
+// ];
+List<SvgPicture> bottomIconDataList = [
+  SvgPicture.asset('images/discard_card.svg'),
+  SvgPicture.asset('images/discard_card.svg'),
+  SvgPicture.asset('images/discard_card.svg'),
 ];

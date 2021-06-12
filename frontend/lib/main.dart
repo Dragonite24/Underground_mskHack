@@ -11,6 +11,8 @@ final GlobalKey<UndergroundNavbarState> navbarKey =
 final GlobalKey<NavigatorState> mainKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> projectsKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> cardsKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> chatKey = GlobalKey<NavigatorState>();
+
 final GlobalKey<NavigatorState> profileKey = GlobalKey<NavigatorState>();
 
 GlobalKey<NavigatorState> currentNavigatorKey(index) {
@@ -25,6 +27,9 @@ GlobalKey<NavigatorState> currentNavigatorKey(index) {
       return cardsKey;
       break;
     case 3:
+      return chatKey;
+      break;
+    case 4:
       return profileKey;
       break;
   }

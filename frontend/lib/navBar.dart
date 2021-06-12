@@ -1,5 +1,7 @@
+import 'package:Underground/pages/chat/chatlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'main.dart';
 import 'pages/cards/searchmain.dart';
@@ -37,6 +39,9 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
           cardsKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 3:
+          chatKey.currentState.popUntil((r) => r.isFirst);
+          break;
+        case 4:
           profileKey.currentState.popUntil((r) => r.isFirst);
           break;
       }
@@ -57,10 +62,11 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                 currentIndex: _currentIndex,
                 backgroundColor: Colors.white,
                 items: <BottomNavigationBarItem>[
-                  navbarItem("История", "main", 0),
-                  navbarItem("Проекты", "projects", 1),
-                  navbarItem("Карточки", "cards", 2),
-                  navbarItem("Профиль", "profile", 3)
+                  navbarItem("Карты", "map", 0),
+                  navbarItem("Проекты", "project", 1),
+                  navbarItem("Карточки", "doc", 2),
+                  navbarItem("Чат", "chat", 3),
+                  navbarItem("Профиль", "person", 4)
                 ],
                 onTap: onItemTapped,
               ),
@@ -83,6 +89,11 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                     break;
                   case 3:
                     currentPage = CupertinoTabView(
+                        navigatorKey: chatKey,
+                        builder: (context) => ChatList());
+                    break;
+                  case 4:
+                    currentPage = CupertinoTabView(
                         navigatorKey: profileKey,
                         builder: (buildContext) => Profile());
                     break;
@@ -92,16 +103,13 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
 
   BottomNavigationBarItem navbarItem(String name, image, int index) =>
       BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          /**
-           * SvgPicture.asset(_currentIndex == index
-              ? "images/navbar/active/${image}_active.svg"
-              : "images/navbar/inactive/${image}_inactive.svg"),
-           */
+          icon: SvgPicture.asset(_currentIndex == index
+              ? "images/navBar/${image}_active.svg"
+              : "images/navBar/${image}_inactive.svg"),
           title: Text(name,
               style: TextStyle(
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
-                  color: _currentIndex == index ? Colors.blue : null)));
+                  color: _currentIndex == index ? Color(0xFF333333) : null)));
 }

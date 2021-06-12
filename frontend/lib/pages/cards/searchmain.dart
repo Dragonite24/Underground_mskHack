@@ -2,6 +2,7 @@ import 'package:Underground/commons/constData.dart';
 import 'package:Underground/commons/userProfileCommon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
@@ -30,7 +31,26 @@ class _SearchMain extends State<Cards>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return dummyUserDataListInSearch.length == _currentIndex
-        ? Center(child: Text('No users!'))
+        ? Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: [
+                Container(
+                  color: Color(0xFFE5E5E5),
+                ),
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
+                  ),
+                ),
+                appBar(),
+                Center(child: Text('Предложений больше нет!')),
+              ],
+            ),
+          )
         : Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -146,7 +166,11 @@ class _SearchMain extends State<Cards>
             padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: bottomIconDataList.map(bottomButtonWidget).toList(),
+              children: [
+                SvgPicture.asset('images/discard_card.svg'),
+                SvgPicture.asset('images/favorite_card.svg'),
+                SvgPicture.asset('images/add_card.svg'),
+              ],
             ),
           )
         ],
@@ -203,9 +227,8 @@ class _SearchMain extends State<Cards>
     int index,
   ) {
     List<Widget> _returnWidgetList = [];
-    for (int i = 0;
-        i < dummyUserDataListInSearch[index].userImages.length;
-        i++) {
+    //dummyUserDataListInSearch[index].userImages.length
+    for (int i = 0; i < 1; i++) {
       Widget _userWidget = Stack(
         children: [
           GestureDetector(
@@ -258,7 +281,7 @@ class _SearchMain extends State<Cards>
                               .copyWith(fontFamily: Fonts().light),
                         ),
                         Text(
-                          '19 Февраля 2000',
+                          'Стартап',
                           style: TextStyle(
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.w600,
@@ -302,7 +325,7 @@ class _SearchMain extends State<Cards>
                         child: Column(
                           children: <Widget>[
                             Text(
-                                "Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. ",
+                                "Мы команда UnderGround! Участники и победители множества хакатонов. ",
                                 style: TextStyle()
                                     .copyWith(fontFamily: Fonts().regular)),
                           ],
@@ -330,12 +353,11 @@ class _SearchMain extends State<Cards>
                   width: MediaQuery.of(context).size.width * 0.78,
                   child: Row(
                     children: <Widget>[
-                      // The long text inside this column overflows. Remove the row and column above this comment and the text wraps.
                       Expanded(
                         child: Column(
                           children: <Widget>[
                             Text(
-                                "Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text. Very long text.  ",
+                                "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
                                 style: TextStyle()
                                     .copyWith(fontFamily: Fonts().regular)),
                           ],
@@ -397,30 +419,6 @@ class _SearchMain extends State<Cards>
     }
     return _returnWidgetList;
   }
-
-  Container frendList() => Container(
-        padding: EdgeInsets.only(right: 10),
-        child: Column(
-          children: [
-            InkWell(
-              child: CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 30,
-                child: CircleAvatar(
-                    radius: 29,
-                    backgroundColor: Colors.red,
-                    backgroundImage: /*todo [i].img*/ null),
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Толясик\nпивасик',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 13),
-            ),
-          ],
-        ),
-      );
 
   Widget projectList() => InkWell(
         onTap: () {

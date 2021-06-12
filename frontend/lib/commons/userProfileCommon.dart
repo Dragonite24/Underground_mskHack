@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -92,32 +93,28 @@ mixin userProfileCommon {
     );
   }
 
-  Widget bottomButtonWidget(BottomButtonData data) {
+  Widget bottomButtonWidget(SvgPicture data) {
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: new RawMaterialButton(
           onPressed: () {
-            if (data.iconData == FontAwesomeIcons.times) {
+            if (data == FontAwesomeIcons.times) {
               cardController.triggerLeft();
-            } else if (data.iconData == FontAwesomeIcons.solidHeart) {
+            } else if (data == FontAwesomeIcons.solidHeart) {
               cardController.triggerRight();
-            } else if (data.iconData == FontAwesomeIcons.solidStar) {
+            } else if (data == FontAwesomeIcons.solidStar) {
               cardController.triggerUp();
             }
           },
-          child: new FaIcon(
-            data.iconData,
-            color: data.iconColor,
-            size: (data.iconData == FontAwesomeIcons.times ||
-                    data.iconData == FontAwesomeIcons.solidHeart)
-                ? 32.0
-                : 20,
-          ),
-          shape: new CircleBorder(),
-          elevation: 1.0,
-          fillColor: Colors.white,
-          padding: const EdgeInsets.all(14.0),
+          // child: new FaIcon(
+          //   data,
+          //   color: data,
+          //   size: (data == FontAwesomeIcons.times ||
+          //           data == FontAwesomeIcons.solidHeart)
+          //       ? 32.0
+          //       : 20,
+          // ),
         ),
       ),
     );
