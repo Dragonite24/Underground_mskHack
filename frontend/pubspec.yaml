@@ -38,6 +38,7 @@ flutter:
     - images/
     - images/navBar/
     - images/text_field/
+    - images/icon/
 
   uses-material-design: true
 

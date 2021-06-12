@@ -23,42 +23,80 @@ class MapsView extends StatefulWidget {
 }
 
 class _MapsViewState extends State<MapsView> {
+  BitmapDescriptor myIcon;
   Completer<GoogleMapController> _completer = Completer();
+  GoogleMapController controller;
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+  @override
+  void initState() {
+    BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(
+        size: Size(49, 68),
+      ),
+      'images/icon/mapflag.png',
+    ).then((onValue) {
+      myIcon = onValue;
+    });
+  }
+
+  static final CameraPosition _kMoscow = CameraPosition(
+    target: LatLng(55.75173133135547, 37.61654577134197),
     zoom: 14.4746,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  static LatLng selected;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
+        initialCameraPosition: _kMoscow,
+        onMapCreated: (GoogleMapController controller) async {
           _completer.complete(controller);
         },
-        onTap: (LatLng pos) {
-          print(pos);
+        onTap: onClick,
+        markers: {
+          if (selected != null)
+            Marker(
+              markerId: MarkerId("selected"),
+              position: selected,
+              icon: myIcon,
+            ),
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
+      bottomNavigationBar: selected == null
+          ? null
+          : Container(
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Text("[Создать мероприятие]"),
+                  ),
+                ],
+              ),
+            ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _completer.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  void onClick(LatLng pos) async {
+    controller = await _completer.future;
+    if (selected == null) {
+      controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: pos,
+            zoom: await controller.getZoomLevel(),
+          ),
+        ),
+      );
+      selected = pos;
+    } else {
+      selected = null;
+    }
+    setState(() {});
   }
 }
