@@ -23,6 +23,7 @@ dependencies:
   scrolling_page_indicator: any
   page_transition: any
   shared_preferences: ^2.0.6
+  google_maps_flutter: any
 
 dev_dependencies:
   # flutter_test:
@@ -38,6 +39,7 @@ flutter:
     - images/
     - images/navBar/
     - images/text_field/
+    - images/icon/
 
   uses-material-design: true
 
