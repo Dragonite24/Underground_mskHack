@@ -3,18 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-void main() => runApp(MyApp2());
-
-class MyApp2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Google Maps Demo',
-      home: MapsView(),
-    );
-  }
-}
-
 class MapsView extends StatefulWidget {
   const MapsView({Key key}) : super(key: key);
 
@@ -48,37 +36,21 @@ class _MapsViewState extends State<MapsView> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kMoscow,
-        onMapCreated: (GoogleMapController controller) async {
-          _completer.complete(controller);
-        },
-        onTap: onClick,
-        markers: {
-          if (selected != null)
-            Marker(
-              markerId: MarkerId("selected"),
-              position: selected,
-              icon: myIcon,
-            ),
-        },
-      ),
-      bottomNavigationBar: selected == null
-          ? null
-          : Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Text("[Создать мероприятие]"),
-                  ),
-                ],
-              ),
-            ),
+    return GoogleMap(
+      mapType: MapType.normal,
+      initialCameraPosition: _kMoscow,
+      onMapCreated: (GoogleMapController controller) async {
+        _completer.complete(controller);
+      },
+      onTap: onClick,
+      markers: <Marker>{
+        if (selected != null)
+          Marker(
+            markerId: MarkerId("selected"),
+            position: selected,
+            icon: myIcon,
+          ),
+      },
     );
   }
 
