@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:Underground/models/token.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/afterReg.dart';
 
@@ -52,12 +53,19 @@ class Http {
     }
   }
 
-  Future<bool> login(String name, password) async {
-    var body = json.encoder.convert({"username": name, "password": password});
+  Future<bool> login(String username, email, id) async {
+    var body =
+        json.encoder.convert({"FIO": username, "email": email, "user": id});
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var token = preferences.getString('token');
+    final headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json'
+    };
     final response = await http.post(
-      Uri.http(url, "api/token"),
+      Uri.http(url, "/api/individ/new"),
       body: body,
-      headers: {'Content-type': 'application/json'},
+      headers: headers,
     );
     if (response.statusCode == 200) {
       log('Login STATUS CODE: ' + response.statusCode.toString());

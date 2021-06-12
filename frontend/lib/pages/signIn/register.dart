@@ -16,14 +16,16 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   TextEditingController password = TextEditingController();
   TextEditingController username = TextEditingController();
   SharedPreferences prefs;
-  void getPref() async {
-    prefs = await SharedPreferences.getInstance();
-  }
 
   @override
   void initState() {
-    super.initState();
     getPref();
+    super.initState();
+  }
+
+  void getPref() async {
+    print(1);
+    prefs = await SharedPreferences.getInstance();
   }
 
   @override
@@ -99,23 +101,26 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                             Http()
                                 .register(
                                     username.text, password.text, email.text)
-                                .then((value) async {
-                              if (value != null) {
+                                .then((value1) async {
+                              if (value1 != null) {
                                 // если зарегались, то логинимся
                                 Http()
                                     .getToken(password.text, username.text)
                                     .then(
-                                  (val) async {
-                                    if (val != null) {
-                                      prefs.setString('token', val.access);
-                                      Navigator.push<void>(
-                                          context,
-                                          MaterialPageRoute<void>(
-                                              builder: (BuildContext context) =>
-                                                  MyHomePage()));
-                                    } else {
-                                      Snackbar.show(context);
-                                    }
+                                  (value2) async {
+                                    await prefs
+                                        .setString('token', value2.access)
+                                        .then((value3) async {
+                                      Http()
+                                          .login(username.text, email.text,
+                                              value1.id)
+                                          .then((value) => Navigator.push<void>(
+                                              context,
+                                              MaterialPageRoute<void>(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          MyHomePage())));
+                                    });
                                   },
                                 );
                               } else {
