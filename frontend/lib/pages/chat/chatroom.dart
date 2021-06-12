@@ -74,6 +74,7 @@ class _ChatRoom extends State<ChatRoom> {
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
                     onTap: () {
+                      // todo : доделать
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(

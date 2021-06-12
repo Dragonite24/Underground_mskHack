@@ -60,7 +60,7 @@ class _SearchMain extends State<Cards>
                   color: Color(0xFFE5E5E5),
                 ),
                 Container(
-                  height: 200,
+                  height: 175,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                         colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
@@ -78,6 +78,13 @@ class _SearchMain extends State<Cards>
           SizedBox(height: MediaQuery.of(context).size.height * 0.12),
           Expanded(
             child: Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  offset: Offset(0.0, 14.0),
+                  blurRadius: 15.0,
+                  color: Color(0x420C9E18),
+                )
+              ]),
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width * 0.85,
               child: TinderSwapCard(

@@ -32,7 +32,7 @@ class Http {
   }
 
   Future<bool> register2(String name, id, email) async {
-    var body = json.encoder.convert({});
+    var body = json.encoder.convert({"FIO": name, "email": email, "user": id});
     final response = await http.post(
       Uri.http(url, "/api/individ/new"),
       body: body,

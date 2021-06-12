@@ -13,14 +13,58 @@ class _PointsState extends State<Points> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-          child: SafeArea(
+      child: SafeArea(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 12),
               Container(
                 alignment: Alignment.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ClipRRect(
+                    child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(colors: <Color>[
+                            Color(0xFF16FF00),
+                            Color(0xFF4CFFC9)
+                          ]),
+                        ),
+                        child: CircleAvatar(
+                            child: CircleAvatar(
+                              radius: 47,
+                              backgroundColor: Colors.white,
+                              child: Text(
+                                '941',
+                                style: TextStyle(
+                                    fontSize: 36, color: Colors.black),
+                              ),
+                            ),
+                            radius: 50,
+                            backgroundColor: Colors.transparent)),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'На баллы можно',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        SizedBox(height: 6),
+                        Text(
+                          'Описаниеееее',
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
               projectCard(
                   'Скидка до 10% в TelaViva в течение месяца!',
@@ -31,7 +75,7 @@ class _PointsState extends State<Points> {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 

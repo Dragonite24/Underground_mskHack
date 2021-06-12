@@ -13,8 +13,7 @@ class _ProjectState extends State<Project> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-          child: SafeArea(
+      child: SafeArea(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +32,7 @@ class _ProjectState extends State<Project> {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 
