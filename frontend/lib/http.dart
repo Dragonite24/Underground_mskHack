@@ -31,22 +31,23 @@ class Http {
     }
   }
 
-  Future<bool> register2(String name, id, email) async {
-    var body = json.encoder.convert({"FIO": name, "email": email, "user": id});
+  Future<String> getToken(String password, username) async {
+    var body =
+        json.encoder.convert({"password": password, "username": username});
     final response = await http.post(
-      Uri.http(url, "/api/individ/new"),
+      Uri.http(url, "/api/token/"),
       body: body,
       headers: {'Content-type': 'application/json'},
     );
     print(body);
     if (response.statusCode < 300) {
-      log('Register STATUS CODE: ' + response.statusCode.toString());
+      log('getToken STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
-      return true;
+      return response.body;
     } else {
-      log('Register STATUS CODE: ' + response.statusCode.toString());
+      log('getToken STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
-      return false;
+      return response.body;
     }
   }
 

@@ -1,11 +1,10 @@
 import 'package:Underground/const.dart';
-import 'package:Underground/pages/signIn/success.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../http.dart';
 import '../../main.dart';
 import '../../snackbar.dart';
 import '../../widgets.dart';
-import 'сonfirmation.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -16,10 +15,15 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController username = TextEditingController();
+  SharedPreferences prefs;
+  void getPref() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   void initState() {
     super.initState();
+    getPref();
   }
 
   @override
@@ -99,11 +103,11 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                               if (value != null) {
                                 // если зарегались, то логинимся
                                 Http()
-                                    .register2(
-                                        username.text, value.id, email.text)
+                                    .getToken(password.text, username.text)
                                     .then(
                                   (val) async {
-                                    if (val) {
+                                    if (val != null) {
+                                      prefs.setString('token', val);
                                       Navigator.push<void>(
                                           context,
                                           MaterialPageRoute<void>(
@@ -119,11 +123,6 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                               }
                             });
                           }
-                          Navigator.push<void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>
-                                      MyHomePage()));
                         }),
                   ]))));
 }
