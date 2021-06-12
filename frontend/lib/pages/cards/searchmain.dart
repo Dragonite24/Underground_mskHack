@@ -43,7 +43,11 @@ class _SearchMain extends State<Cards>
                   height: 200,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
+                      colors: <Color>[
+                        Color(0xFF16FF00),
+                        Color(0xFF4CFFC9),
+                      ],
+                    ),
                   ),
                 ),
                 appBar(),
@@ -63,7 +67,11 @@ class _SearchMain extends State<Cards>
                   height: 175,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
+                      colors: <Color>[
+                        Color(0xFF16FF00),
+                        Color(0xFF4CFFC9),
+                      ],
+                    ),
                   ),
                 ),
                 appBar(),
@@ -75,16 +83,20 @@ class _SearchMain extends State<Cards>
 
   Widget cards(size) => Column(
         children: <Widget>[
-          SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.12,
+          ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  offset: Offset(0.0, 14.0),
-                  blurRadius: 15.0,
-                  color: Color(0x420C9E18),
-                )
-              ]),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0.0, 14.0),
+                    blurRadius: 15.0,
+                    color: Color(0x420C9E18),
+                  )
+                ],
+              ),
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width * 0.85,
               child: TinderSwapCard(
@@ -171,48 +183,59 @@ class _SearchMain extends State<Cards>
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              FlatButton(
-                onPressed: () => cardController.triggerLeft(),
-                padding: EdgeInsets.all(0.0),
-                child: Image.asset('images/discard_card.png'),
-              ),
-              FlatButton(
-                onPressed: () => cardController.triggerUp(),
-                padding: EdgeInsets.all(0.0),
-                child: Image.asset('images/like_card.png'),
-              ),
-              FlatButton(
-                onPressed: () => cardController.triggerRight(),
-                padding: EdgeInsets.all(0.0),
-                child: Image.asset('images/add_card.png'),
-              ),
-            ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FlatButton(
+                  onPressed: () => cardController.triggerLeft(),
+                  padding: EdgeInsets.all(0.0),
+                  child: Image.asset('images/discard_card.png'),
+                ),
+                FlatButton(
+                  onPressed: () => cardController.triggerUp(),
+                  padding: EdgeInsets.all(0.0),
+                  child: Image.asset('images/like_card.png'),
+                ),
+                FlatButton(
+                  onPressed: () => cardController.triggerRight(),
+                  padding: EdgeInsets.all(0.0),
+                  child: Image.asset('images/add_card.png'),
+                ),
+              ],
+            ),
           )
         ],
       );
 
-  Widget appBar() => Positioned(
-          child: Container(
+  Widget appBar() {
+    return Positioned(
+      child: Container(
         padding: EdgeInsets.all(12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-                onPressed: null,
-                icon: Icon(Icons.filter_list_alt, color: Colors.black)),
+              onPressed: null,
+              icon: Icon(
+                Icons.filter_list_alt,
+                color: Colors.black,
+              ),
+            ),
             Text('Карточки',
                 style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontSize: 24,
-                        color: Color(0xFF333333))
-                    .copyWith(fontFamily: Fonts().regular)),
+                  fontStyle: FontStyle.normal,
+                  fontSize: 24,
+                  color: Color(0xFF333333),
+                ).copyWith(fontFamily: Fonts().regular)),
             IconButton(
-                onPressed: null,
-                icon: Icon(Icons.favorite, color: Colors.black)),
+              onPressed: null,
+              icon: Icon(Icons.favorite, color: Colors.black),
+            ),
           ],
         ),
-      ));
+      ),
+    );
+  }
 
   Widget _likeOrDislikeIconOnPhoto(IconData icon, Color iconColor) {
     return AnimatedOpacity(
@@ -280,30 +303,30 @@ class _SearchMain extends State<Cards>
                             'UnderGround',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                    color: Color(0xFF333333))
-                                .copyWith(fontFamily: Fonts().light),
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              color: Color(0xFF333333),
+                            ).copyWith(fontFamily: Fonts().light),
                           ),
                         ),
                         Text(
                           'Россия, Ярославль',
                           style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  color: Color(0xFF333333))
-                              .copyWith(fontFamily: Fonts().light),
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: Color(0xFF333333),
+                          ).copyWith(fontFamily: Fonts().light),
                         ),
                         Text(
                           'Стартап',
                           style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  color: Color(0xFF333333))
-                              .copyWith(fontFamily: Fonts().light),
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: Color(0xFF333333),
+                          ).copyWith(fontFamily: Fonts().light),
                         ),
                       ],
                     ),
@@ -322,11 +345,11 @@ class _SearchMain extends State<Cards>
                   child: Text(
                     'О нас',
                     style: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF333333))
-                        .copyWith(fontFamily: Fonts().regular),
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Color(0xFF333333),
+                    ).copyWith(fontFamily: Fonts().regular),
                   ),
                 ),
                 SizedBox(height: 6),
@@ -339,9 +362,10 @@ class _SearchMain extends State<Cards>
                         child: Column(
                           children: <Widget>[
                             Text(
-                                "Мы команда UnderGround! Участники и победители множества хакатонов. ",
-                                style: TextStyle()
-                                    .copyWith(fontFamily: Fonts().regular)),
+                              "Мы команда UnderGround! Участники и победители множества хакатонов. ",
+                              style: TextStyle()
+                                  .copyWith(fontFamily: Fonts().regular),
+                            ),
                           ],
                         ),
                       ),
@@ -353,14 +377,16 @@ class _SearchMain extends State<Cards>
                   child: Text(
                     'Достижения',
                     style: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF333333))
-                        .copyWith(fontFamily: Fonts().regular),
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Color(0xFF333333),
+                    ).copyWith(fontFamily: Fonts().regular),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.00),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.00,
+                ),
                 Container(
                   height: 100,
                   width: MediaQuery.of(context).size.width * 0.78,
@@ -370,9 +396,10 @@ class _SearchMain extends State<Cards>
                         child: Column(
                           children: <Widget>[
                             Text(
-                                "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
-                                style: TextStyle()
-                                    .copyWith(fontFamily: Fonts().regular)),
+                              "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
+                              style: TextStyle()
+                                  .copyWith(fontFamily: Fonts().regular),
+                            ),
                           ],
                         ),
                       ),
@@ -385,11 +412,11 @@ class _SearchMain extends State<Cards>
                   child: Text(
                     'Проекты',
                     style: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF333333))
-                        .copyWith(fontFamily: Fonts().regular),
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Color(0xFF333333),
+                    ).copyWith(fontFamily: Fonts().regular),
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
@@ -397,16 +424,18 @@ class _SearchMain extends State<Cards>
                   width: MediaQuery.of(context).size.width * 0.78,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(children: <Widget>[
-                      projectList(),
-                      SizedBox(width: 5),
-                      projectList(),
-                      SizedBox(width: 5),
-                      projectList(),
-                      SizedBox(width: 5),
-                      SizedBox(width: 5),
-                      projectList(),
-                    ]),
+                    child: Row(
+                      children: <Widget>[
+                        projectList(),
+                        SizedBox(width: 5),
+                        projectList(),
+                        SizedBox(width: 5),
+                        projectList(),
+                        SizedBox(width: 5),
+                        SizedBox(width: 5),
+                        projectList(),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -416,14 +445,15 @@ class _SearchMain extends State<Cards>
             right: 12,
             top: 30,
             child: ScrollingPageIndicator(
-                dotColor: Colors.white,
-                dotSelectedColor: Colors.green,
-                dotSize: 6,
-                dotSelectedSize: 10,
-                dotSpacing: 16,
-                controller: _pageController,
-                itemCount: dummyUserDataListInSearch[index].userImages.length,
-                orientation: Axis.vertical),
+              dotColor: Colors.white,
+              dotSelectedColor: Colors.green,
+              dotSize: 6,
+              dotSelectedSize: 10,
+              dotSpacing: 16,
+              controller: _pageController,
+              itemCount: dummyUserDataListInSearch[index].userImages.length,
+              orientation: Axis.vertical,
+            ),
           ),
         ],
       );
@@ -432,28 +462,30 @@ class _SearchMain extends State<Cards>
     return _returnWidgetList;
   }
 
-  Widget projectList() => InkWell(
-        onTap: () {
-          print("popo");
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Container(
-            width: 150,
-            height: 110,
-            child: Column(
-              children: [
-                Container(
-                  color: Colors.red,
-                  height: 70,
-                ),
-                Container(
-                  color: Colors.green,
-                  height: 40,
-                ),
-              ],
-            ),
+  Widget projectList() {
+    return InkWell(
+      onTap: () {
+        print("popo");
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          width: 150,
+          height: 110,
+          child: Column(
+            children: [
+              Container(
+                color: Colors.red,
+                height: 70,
+              ),
+              Container(
+                color: Colors.green,
+                height: 40,
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

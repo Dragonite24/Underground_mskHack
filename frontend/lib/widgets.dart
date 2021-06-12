@@ -20,7 +20,7 @@ class UndergroundScaffold extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: appBar,
 
-        ///  Страница скроллится для того, чтобы при разделении экрана на два
+        /// Страница скроллится для того, чтобы при разделении экрана на два
         /// (на андроиде), вёрстка не падала
         body: SingleChildScrollView(
           child: SafeArea(
