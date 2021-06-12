@@ -76,6 +76,7 @@ class UndergroundTextField extends StatelessWidget {
                     ),
                     labelText: hintText,
                   ),
+                  controller: controller,
                 ),
               )
             ])),
