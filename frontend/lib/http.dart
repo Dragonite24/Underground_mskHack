@@ -33,9 +33,9 @@ class Http {
     }
   }
 
-  Future<GetToken> getToken(String password, username) async {
+  Future<GetToken> getToken(String username, password) async {
     var body =
-        json.encoder.convert({"password": password, "username": username});
+        json.encoder.convert({"username": username, "password": password});
     final response = await http.post(
       Uri.http(url, "/api/token/"),
       body: body,
@@ -53,7 +53,7 @@ class Http {
     }
   }
 
-  Future<bool> login(String username, email, id) async {
+  Future<bool> newIndivid(String username, email, id) async {
     var body =
         json.encoder.convert({"FIO": username, "email": email, "user": id});
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -67,6 +67,7 @@ class Http {
       body: body,
       headers: headers,
     );
+    print(response.statusCode);
     if (response.statusCode == 200) {
       log('Login STATUS CODE: ' + response.statusCode.toString());
       log(response.body);

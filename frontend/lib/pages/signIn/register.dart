@@ -112,7 +112,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                         .setString('token', value2.access)
                                         .then((value3) async {
                                       Http()
-                                          .login(username.text, email.text,
+                                          .newIndivid(username.text, email.text,
                                               value1.id)
                                           .then((value) => Navigator.push<void>(
                                               context,
