@@ -9,8 +9,8 @@ void main() => runApp(MyApp());
 final GlobalKey<UndergroundNavbarState> navbarKey =
     GlobalKey<UndergroundNavbarState>();
 final GlobalKey<NavigatorState> mainKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> mapKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> ratingKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> projectsKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> cardsKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> profileKey = GlobalKey<NavigatorState>();
 
 GlobalKey<NavigatorState> currentNavigatorKey(index) {
@@ -19,10 +19,10 @@ GlobalKey<NavigatorState> currentNavigatorKey(index) {
       return mainKey;
       break;
     case 1:
-      return mapKey;
+      return projectsKey;
       break;
     case 2:
-      return ratingKey;
+      return cardsKey;
       break;
     case 3:
       return profileKey;

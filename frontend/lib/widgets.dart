@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class UndergroundScaffold extends StatelessWidget {
-  final Widget appBar, body;
+  final Widget appBar, body, backgroundColor;
 
-  UndergroundScaffold({this.appBar, this.body});
+  UndergroundScaffold({this.appBar, this.body, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) => MediaQuery(

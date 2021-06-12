@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'main.dart';
-import 'pages/signIn/profile/profileDate.dart';
+import 'pages/cards/searchmain.dart';
+import 'pages/profile/profileDate.dart';
+import 'pages/projects/projects.dart';
 
 class UndergroundNavbar extends StatefulWidget {
   final bool isFromSignUp;
@@ -18,10 +20,6 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
 
   CupertinoTabController _controller;
 
-  // String active(String image) => "images/navbar/active/${image}_active.svg";
-
-  // String inactive(String image) => "images/navbar/inactive/$image.svg";
-
   int _currentIndex = 0;
 
   double height = 19.35;
@@ -33,10 +31,10 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
           mainKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 1:
-          mapKey.currentState.popUntil((r) => r.isFirst);
+          projectsKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 2:
-          ratingKey.currentState.popUntil((r) => r.isFirst);
+          cardsKey.currentState.popUntil((r) => r.isFirst);
           break;
         case 3:
           profileKey.currentState.popUntil((r) => r.isFirst);
@@ -60,8 +58,8 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                 backgroundColor: Colors.white,
                 items: <BottomNavigationBarItem>[
                   navbarItem("История", "main", 0),
-                  navbarItem("Карта", "map", 1),
-                  navbarItem("Рейтинг", "rating", 2),
+                  navbarItem("Проекты", "projects", 1),
+                  navbarItem("Карточки", "cards", 2),
                   navbarItem("Профиль", "profile", 3)
                 ],
                 onTap: onItemTapped,
@@ -76,12 +74,12 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                     break;
                   case 1:
                     currentPage = CupertinoTabView(
-                        navigatorKey: mapKey, builder: (context) => Profile());
+                        navigatorKey: projectsKey,
+                        builder: (context) => MyProjects());
                     break;
                   case 2:
                     currentPage = CupertinoTabView(
-                        navigatorKey: ratingKey,
-                        builder: (context) => Profile());
+                        navigatorKey: cardsKey, builder: (context) => Cards());
                     break;
                   case 3:
                     currentPage = CupertinoTabView(
