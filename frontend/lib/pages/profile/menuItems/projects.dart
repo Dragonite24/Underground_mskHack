@@ -42,7 +42,7 @@ class _ProjectState extends State<Project> {
         child: Stack(
           children: [
             Container(
-              height: 200,
+              height: 250,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                 boxShadow: [
@@ -54,7 +54,7 @@ class _ProjectState extends State<Project> {
                 ],
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: NetworkImage("$url"),
                 ),
               ),
@@ -63,7 +63,7 @@ class _ProjectState extends State<Project> {
                 bottom: 0,
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: 55,
+                  height: 90,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -72,7 +72,7 @@ class _ProjectState extends State<Project> {
                   ),
                 )),
             Positioned(
-                bottom: 33,
+                bottom: 65,
                 left: 15,
                 child: Text(
                   name,
@@ -84,14 +84,14 @@ class _ProjectState extends State<Project> {
                       .copyWith(fontFamily: Fonts().regular),
                 )),
             Positioned(
-                bottom: 15,
+                bottom: 45,
                 left: 15,
                 child: Text(
                   descr,
                   style: TextStyle(
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: Color(0xFF333333))
                       .copyWith(fontFamily: Fonts().thin),
                 )),
