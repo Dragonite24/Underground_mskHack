@@ -50,8 +50,9 @@ class _MapsViewState extends State<MapsView> {
           ),
           child: Container(
             constraints: const BoxConstraints(
-                minWidth: 200.0,
-                minHeight: 40.0), // min sizes for Material buttons
+              minWidth: 200.0,
+              minHeight: 40.0,
+            ), // min sizes for Material buttons
             alignment: Alignment.center,
             child: const Text(
               'Создать мероприятие',
