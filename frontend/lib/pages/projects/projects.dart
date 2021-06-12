@@ -59,7 +59,7 @@ class _MyProjectsState extends State<MyProjects> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: NetworkImage("$url"),
                 ),
               ),

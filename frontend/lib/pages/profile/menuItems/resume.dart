@@ -22,50 +22,48 @@ class _ResumeState extends State<Resume> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Опыт работы',
-                  style: style_medium,
-                ),
-                Text(
-                  'Ваш опыт работы',
-                  style: style_light,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Образование',
-                  style: style_medium,
-                ),
-                Text(
-                  'Ваше образование',
-                  style: style_light,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Soft Skills',
-                  style: style_medium,
-                ),
-                Text(
-                  'Опыт работы',
-                  style: style_light,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Hard Skills',
-                  style: style_medium,
-                ),
-                Text(
-                  'Опыт работы',
-                  style: style_light,
-                ),
-              ],
-            ),
+      child: SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Опыт работы',
+                style: style_medium,
+              ),
+              Text(
+                'Ваш опыт работы',
+                style: style_light,
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Образование',
+                style: style_medium,
+              ),
+              Text(
+                'Ваше образование',
+                style: style_light,
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Soft Skills',
+                style: style_medium,
+              ),
+              Text(
+                'Опыт работы',
+                style: style_light,
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Hard Skills',
+                style: style_medium,
+              ),
+              Text(
+                'Опыт работы',
+                style: style_light,
+              ),
+            ],
           ),
         ),
       ),

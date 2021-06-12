@@ -30,84 +30,84 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: Scaffold(
               backgroundColor: Colors.green,
-              body: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 80),
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // основная колонка
-                      children: [
-                        SizedBox(height: 15),
-                        CircleAvatar(
-                          radius: 40,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          'Колесников Семен',
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: Color(0xFF333333))
-                              .copyWith(fontFamily: Fonts().light),
-                        ),
-                        Text(
-                          'Россия, Ярославль',
-                          style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  color: Color(0xFF333333))
-                              .copyWith(fontFamily: Fonts().light),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
-                        RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Color(0xFF333333)),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: '+7(905)630-22-80 qwez-9@mail.ru',
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 12,
-                                          color: Color(0xFF16FF00))),
-                                ])),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal, // todo
-                          child: Row(
-                            children: [
-                              menuItem('Резюме', 0),
-                              menuItem('Проекты', 1),
-                              menuItem('Команда', 2),
-                              menuItem('Баллы', 3),
-                            ],
+              body: SingleChildScrollView(
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 80),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // основная колонка
+                        children: [
+                          SizedBox(height: 15),
+                          CircleAvatar(
+                            radius: 40,
                           ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.53,
-                          width: MediaQuery.of(context).size.width,
-                          child: IndexedStack(
+                          SizedBox(width: 10),
+                          Text(
+                            'Колесников Семен',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Color(0xFF333333))
+                                .copyWith(fontFamily: Fonts().light),
+                          ),
+                          Text(
+                            'Россия, Ярославль',
+                            style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    color: Color(0xFF333333))
+                                .copyWith(fontFamily: Fonts().light),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                  style: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF333333)),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text: '+7(905)630-22-80 qwez-9@mail.ru',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 12,
+                                            color: Color(0xFF16FF00))),
+                                  ])),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.02),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal, // todo
+                            child: Row(
+                              children: [
+                                menuItem('Резюме', 0),
+                                menuItem('Проекты', 1),
+                                menuItem('Команда', 2),
+                                menuItem('Баллы', 3),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          IndexedStack(
                             index: _widgetIndex,
                             children: [
                               Resume(),
@@ -116,8 +116,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                               Points(),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
