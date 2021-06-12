@@ -34,23 +34,76 @@ class _MapsViewState extends State<MapsView> {
 
   static LatLng selected;
 
+  Widget _buildButton() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: () {
+          // TODO
+        },
+        child: Ink(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)],
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+          ),
+          child: Container(
+            constraints: const BoxConstraints(
+                minWidth: 200.0,
+                minHeight: 40.0), // min sizes for Material buttons
+            alignment: Alignment.center,
+            child: const Text(
+              'Создать мероприятие',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0.0)),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      mapType: MapType.normal,
-      initialCameraPosition: _kMoscow,
-      onMapCreated: (GoogleMapController controller) async {
-        _completer.complete(controller);
-      },
-      onTap: onClick,
-      markers: <Marker>{
-        if (selected != null)
-          Marker(
-            markerId: MarkerId("selected"),
-            position: selected,
-            icon: myIcon,
-          ),
-      },
+    return Stack(
+      children: [
+        GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _kMoscow,
+          onMapCreated: (GoogleMapController controller) async {
+            _completer.complete(controller);
+          },
+          onTap: onClick,
+          markers: <Marker>{
+            if (selected != null)
+              Marker(
+                markerId: MarkerId("selected"),
+                position: selected,
+                icon: myIcon,
+              ),
+          },
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (selected != null) _buildButton(),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 
