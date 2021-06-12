@@ -22,6 +22,7 @@ dependencies:
   cached_network_image: any
   scrolling_page_indicator: any
   page_transition: any
+  google_maps_flutter: any
 
 dev_dependencies:
   # flutter_test:
