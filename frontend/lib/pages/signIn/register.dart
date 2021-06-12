@@ -13,9 +13,9 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
-  TextEditingController email = TextEditingController(),
-      password = TextEditingController(),
-      username = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController username = TextEditingController();
 
   @override
   void initState() {
@@ -77,7 +77,10 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       hintText: "Имя и Фамилия",
                     ),
                     UndergroundTextField(
-                        controller: email, icon: "password", hintText: "Почта"),
+                      controller: email,
+                      icon: "password",
+                      hintText: "Почта",
+                    ),
                     UndergroundTextField(
                         controller: password,
                         icon: "password",
@@ -93,9 +96,12 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                 .register(
                                     username.text, password.text, email.text)
                                 .then((value) async {
-                              if (value) {
+                              if (value != null) {
                                 // если зарегались, то логинимся
-                                Http().login(username.text, password.text).then(
+                                Http()
+                                    .register2(
+                                        username.text, value.id, email.text)
+                                    .then(
                                   (val) async {
                                     if (val) {
                                       Navigator.push<void>(
@@ -112,12 +118,12 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                 Snackbar.show(context);
                               }
                             });
-                            Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        Success()));
                           }
+                          Navigator.push<void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      MyHomePage()));
                         }),
                   ]))));
 }

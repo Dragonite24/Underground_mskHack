@@ -21,13 +21,6 @@ class _ProjectState extends State<Project> {
             children: [
               Container(
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                child: Text('Проекты',
-                    style: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontSize: 24,
-                            color: Color(0xFF333333))
-                        .copyWith(fontFamily: Fonts().regular)),
               ),
               projectCard('Один', 'Описание',
                   'https://cdn5.zp.ru/job/attaches/2018/08/84/a9/84a905e003a615c706f0b6d657ce940e.jpg'),
@@ -49,9 +42,16 @@ class _ProjectState extends State<Project> {
         child: Stack(
           children: [
             Container(
-              height: 160,
+              height: 200,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0.0, 10.0),
+                    blurRadius: 10.0,
+                    color: Color(0x42000000),
+                  )
+                ],
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
                   fit: BoxFit.fill,
