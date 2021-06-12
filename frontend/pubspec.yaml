@@ -73,5 +73,5 @@ flutter_icons:
   android: true
   ios: false
   image_path: "images/icon/icon.png"
-  # adaptive_icon_background: "images/icon/icon-bg.png" # only available for Android 8.0 devices and above
-  # adaptive_icon_foreground: "images/icon/icon-fg.png" # only available for Android 8.0 devices and above
+  adaptive_icon_background: "images/icon/icon-bg.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "images/icon/icon-fg.png" # only available for Android 8.0 devices and above
