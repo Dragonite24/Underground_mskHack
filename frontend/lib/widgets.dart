@@ -107,8 +107,7 @@ class UndergroundButton extends StatelessWidget {
                   gradient: LinearGradient(
                       colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
                   color: Colors.black,
-                  borderRadius:
-                      BorderRadius.circular(10), //border corner radius
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       offset: Offset(0.0, 14.0),
@@ -124,4 +123,17 @@ class UndergroundButton extends StatelessWidget {
                               fontSize: 24,
                               color: Color(0xFF333333))
                           .copyWith(fontFamily: Fonts().light))))));
+}
+
+class UndergroundOutlinedButton {
+  final kInnerDecoration = BoxDecoration(
+    color: Colors.white,
+    border: Border.all(color: Colors.white),
+    borderRadius: BorderRadius.circular(32),
+  );
+
+  final kGradientBoxDecoration = BoxDecoration(
+    gradient: LinearGradient(colors: [Color(0xFF16FF00), Color(0xFF4CFFC9)]),
+    borderRadius: BorderRadius.circular(32),
+  );
 }

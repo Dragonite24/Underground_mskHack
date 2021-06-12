@@ -1,5 +1,4 @@
 // Fonts TTFirsNeue
-
 class Fonts {
   final black = 'Black';
   final bold = 'Bold';

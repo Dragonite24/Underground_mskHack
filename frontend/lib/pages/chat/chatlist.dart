@@ -59,20 +59,7 @@ class _ChatList extends State<ChatList>
         ListTile(
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
-            child: CachedNetworkImage(
-              imageUrl: null,
-              placeholder: (context, url) => Container(
-                transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                child: Container(
-                    width: 60,
-                    height: 80,
-                    child: Center(child: new CircularProgressIndicator())),
-              ),
-              errorWidget: (context, url, error) => new Icon(Icons.error),
-              width: 60,
-              height: 80,
-              fit: BoxFit.cover,
-            ),
+            child: CircleAvatar(radius: 40),
           ),
           title: Text('Kim'),
           subtitle: Text('I will go to home now'),

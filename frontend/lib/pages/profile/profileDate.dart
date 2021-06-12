@@ -1,5 +1,6 @@
 import 'package:Underground/code_input/src/verify_code_input_widget.dart';
 import 'package:Underground/const.dart';
+import 'package:Underground/pages/profile/menuItems/projects.dart';
 import 'package:Underground/pages/signIn/success.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,33 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+  }
+
+  int _currentIndex = 0;
+
+  Future<bool> onItemTapped(int index) async {
+    if (index == _currentIndex) {
+      switch (index) {
+        case 0:
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Project()));
+          break;
+        case 1:
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Project()));
+          break;
+        case 2:
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Project()));
+          break;
+        case 3:
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Project()));
+          break;
+      }
+    } else
+      setState(() => _currentIndex = index);
+    return true;
   }
 
   @override
@@ -35,178 +63,104 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                     ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // основная колонка
-                        children: [
-                          Row(
-                            // Аватар, фио, настройки
-                            children: [
-                              CircleAvatar(
-                                radius: 40,
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                height: 80,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 190,
-                                      child: Text(
-                                        'Колесников Семен',
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                                fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 20,
-                                                color: Color(0xFF333333))
-                                            .copyWith(
-                                                fontFamily: Fonts().light),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Россия, Ярославль',
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // основная колонка
+                      children: [
+                        SizedBox(height: 15),
+                        CircleAvatar(
+                          radius: 40,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          'Колесников Семен',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: Color(0xFF333333))
+                              .copyWith(fontFamily: Fonts().light),
+                        ),
+                        Text(
+                          'Россия, Ярославль',
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: Color(0xFF333333))
+                              .copyWith(fontFamily: Fonts().light),
+                        ),
+                        Text(
+                          '19 Февраля 2000',
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: Color(0xFF333333))
+                              .copyWith(fontFamily: Fonts().light),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01),
+                        RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                                style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Color(0xFF333333)),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '',
+                                  ),
+                                  TextSpan(
+                                      text: '+7-905-630-22-80 qwez-9@mail.ru',
                                       style: TextStyle(
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 12,
-                                              color: Color(0xFF333333))
-                                          .copyWith(fontFamily: Fonts().light),
-                                    ),
-                                    Text(
-                                      '19 Февраля 2000',
-                                      style: TextStyle(
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 12,
-                                              color: Color(0xFF333333))
-                                          .copyWith(fontFamily: Fonts().light),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: 80,
-                                child: IconButton(
-                                    onPressed: null,
-                                    icon: Icon(Icons.settings)),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.03),
-                          Container(
-                            child: Text(
-                              'Друзья',
-                              style: TextStyle(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      color: Color(0xFF333333))
-                                  .copyWith(fontFamily: Fonts().light),
-                            ),
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.01),
-                          SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(children: <Widget>[
-                                frendList(),
-                                frendList(),
-                                frendList(),
-                                frendList(),
-                                frendList(),
-                                frendList(),
-                              ])),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.03),
-                          Container(
-                            child: Text(
-                              'О себе',
-                              style: TextStyle(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      color: Color(0xFF333333))
-                                  .copyWith(fontFamily: Fonts().light),
-                            ),
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.15),
-                          Container(
-                            child: Text(
-                              'Проекты',
-                              style: TextStyle(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      color: Color(0xFF333333))
-                                  .copyWith(fontFamily: Fonts().light),
-                            ),
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.01),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(children: <Widget>[
-                              projectList(),
-                              projectList(),
-                              projectList(),
-                            ]),
-                          ),
-                        ],
-                      ),
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                          color: Color(0xFF16FF00))),
+                                ])),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal, // todo
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(children: <Widget>[
+                            Container(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                color: Colors.red),
+                          ]),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ))));
-  Container frendList() => Container(
-        padding: EdgeInsets.only(right: 10),
-        child: Column(
-          children: [
-            InkWell(
-              child: CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 30,
-                child: CircleAvatar(
-                    radius: 29,
-                    backgroundColor: Colors.red,
-                    backgroundImage: /*todo [i].img*/ null),
+
+  Widget menuItem(String text) => Row(
+        children: [
+          SizedBox(width: 10),
+          GestureDetector(
+            onTap: () => print('qwe'),
+            child: Container(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(text),
+                decoration: UndergroundOutlinedButton().kInnerDecoration,
               ),
+              width: 90,
+              height: 30,
+              decoration: UndergroundOutlinedButton().kGradientBoxDecoration,
             ),
-            SizedBox(height: 5),
-            Text(
-              'Толясик\nпивасик',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 13),
-            ),
-          ],
-        ),
-      );
-  Container projectList() => Container(
-        width: 150,
-        height: 110,
-        padding: EdgeInsets.only(right: 10),
-        child: Column(
-          children: [
-            Container(
-              color: Colors.red,
-              height: 70,
-            ),
-            Container(
-              color: Colors.green,
-              height: 40,
-            ),
-          ],
-        ),
+          ),
+          SizedBox(width: 5),
+        ],
       );
 }

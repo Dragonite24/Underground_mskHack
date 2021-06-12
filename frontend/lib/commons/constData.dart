@@ -101,14 +101,3 @@ List<UserData> dummyUserDataListInLounge() {
     ]),
   ];
 }
-
-// List<BottomButtonData> bottomIconDataList = [
-//   BottomButtonData(FontAwesomeIcons.times, Colors.redAccent),
-//   BottomButtonData(FontAwesomeIcons.solidStar, Colors.blue[400]),
-//   BottomButtonData(FontAwesomeIcons.solidHeart, Colors.green[400]),
-// ];
-List<SvgPicture> bottomIconDataList = [
-  SvgPicture.asset('images/discard_card.svg'),
-  SvgPicture.asset('images/discard_card.svg'),
-  SvgPicture.asset('images/discard_card.svg'),
-];

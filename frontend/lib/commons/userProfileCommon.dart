@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
@@ -88,33 +90,6 @@ mixin userProfileCommon {
             interesting,
             style: TextStyle(color: Colors.white),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget bottomButtonWidget(SvgPicture data) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: new RawMaterialButton(
-          onPressed: () {
-            if (data == FontAwesomeIcons.times) {
-              cardController.triggerLeft();
-            } else if (data == FontAwesomeIcons.solidHeart) {
-              cardController.triggerRight();
-            } else if (data == FontAwesomeIcons.solidStar) {
-              cardController.triggerUp();
-            }
-          },
-          // child: new FaIcon(
-          //   data,
-          //   color: data,
-          //   size: (data == FontAwesomeIcons.times ||
-          //           data == FontAwesomeIcons.solidHeart)
-          //       ? 32.0
-          //       : 20,
-          // ),
         ),
       ),
     );

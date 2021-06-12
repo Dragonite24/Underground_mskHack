@@ -164,14 +164,23 @@ class _SearchMain extends State<Cards>
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset('images/discard_card.svg'),
-                SvgPicture.asset('images/favorite_card.svg'),
-                SvgPicture.asset('images/add_card.svg'),
-              ],
-            ),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              FlatButton(
+                onPressed: () => cardController.triggerLeft(),
+                padding: EdgeInsets.all(0.0),
+                child: Image.asset('images/discard_card.png'),
+              ),
+              FlatButton(
+                onPressed: () => cardController.triggerUp(),
+                padding: EdgeInsets.all(0.0),
+                child: Image.asset('images/like_card.png'),
+              ),
+              FlatButton(
+                onPressed: () => cardController.triggerRight(),
+                padding: EdgeInsets.all(0.0),
+                child: Image.asset('images/add_card.png'),
+              ),
+            ]),
           )
         ],
       );
@@ -296,7 +305,6 @@ class _SearchMain extends State<Cards>
               ),
             ),
           ),
-          //SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.12,
             left: MediaQuery.of(context).size.width * 0.05,
@@ -316,11 +324,10 @@ class _SearchMain extends State<Cards>
                 ),
                 SizedBox(height: 6),
                 Container(
-                  height: 100,
+                  height: 80,
                   width: MediaQuery.of(context).size.width * 0.78,
                   child: Row(
                     children: <Widget>[
-                      // The long text inside this column overflows. Remove the row and column above this comment and the text wraps.
                       Expanded(
                         child: Column(
                           children: <Widget>[
@@ -334,7 +341,6 @@ class _SearchMain extends State<Cards>
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.78,
                   child: Text(
@@ -386,8 +392,12 @@ class _SearchMain extends State<Cards>
                     scrollDirection: Axis.horizontal,
                     child: Row(children: <Widget>[
                       projectList(),
+                      SizedBox(width: 5),
                       projectList(),
+                      SizedBox(width: 5),
                       projectList(),
+                      SizedBox(width: 5),
+                      SizedBox(width: 5),
                       projectList(),
                     ]),
                   ),
@@ -395,11 +405,6 @@ class _SearchMain extends State<Cards>
               ],
             ),
           ),
-
-          // Positioned(
-          //     bottom: 4,
-          //     left: 4,
-          //     child: userInformation(dummyUserDataListInSearch[index], size)),
           Positioned(
             right: 12,
             top: 30,
@@ -424,21 +429,23 @@ class _SearchMain extends State<Cards>
         onTap: () {
           print("popo");
         },
-        child: Container(
-          width: 150,
-          height: 110,
-          padding: EdgeInsets.only(right: 10),
-          child: Column(
-            children: [
-              Container(
-                color: Colors.red,
-                height: 70,
-              ),
-              Container(
-                color: Colors.green,
-                height: 40,
-              ),
-            ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Container(
+            width: 150,
+            height: 110,
+            child: Column(
+              children: [
+                Container(
+                  color: Colors.red,
+                  height: 70,
+                ),
+                Container(
+                  color: Colors.green,
+                  height: 40,
+                ),
+              ],
+            ),
           ),
         ),
       );

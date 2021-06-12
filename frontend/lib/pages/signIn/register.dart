@@ -1,7 +1,9 @@
 import 'package:Underground/const.dart';
 import 'package:Underground/pages/signIn/success.dart';
 import 'package:flutter/material.dart';
+import '../../http.dart';
 import '../../main.dart';
+import '../../snackbar.dart';
 import '../../widgets.dart';
 import 'сonfirmation.dart';
 
@@ -87,28 +89,29 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         onTap: () {
                           bool canSignUp = true;
                           if (canSignUp) {
-                            // Http()
-                            //     .register(name.text, password.text, email.text)
-                            //     .then((value) async {
-                            //   if (value) {
-                            //     // если зарегались, то логинимся
-                            //     Http().login(name.text, password.text).then(
-                            //       (val) async {
-                            //         if (val) {
-                            //           Navigator.push<void>(
-                            //               context,
-                            //               MaterialPageRoute<void>(
-                            //                   builder: (BuildContext context) =>
-                            //                       MyHomePage()));
-                            //         } else {
-                            //           Snackbar.show(context);
-                            //         }
-                            //       },
-                            //     );
-                            //   } else {
-                            //     Snackbar.show(context);
-                            //   }
-                            // });
+                            Http()
+                                .register(
+                                    username.text, password.text, email.text)
+                                .then((value) async {
+                              if (value) {
+                                // если зарегались, то логинимся
+                                Http().login(username.text, password.text).then(
+                                  (val) async {
+                                    if (val) {
+                                      Navigator.push<void>(
+                                          context,
+                                          MaterialPageRoute<void>(
+                                              builder: (BuildContext context) =>
+                                                  MyHomePage()));
+                                    } else {
+                                      Snackbar.show(context);
+                                    }
+                                  },
+                                );
+                              } else {
+                                Snackbar.show(context);
+                              }
+                            });
                             Navigator.push<void>(
                                 context,
                                 MaterialPageRoute<void>(
