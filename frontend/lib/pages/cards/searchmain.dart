@@ -60,88 +60,85 @@ class _SearchMain extends State<Cards>
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width * 0.85,
-              child: ClipRRect(
-                child: TinderSwapCard(
-                  orientation: AmassOrientation.BOTTOM,
-                  totalNum: dummyUserDataListInSearch.length,
-                  stackNum: 3,
-                  swipeEdge: 4.0,
-                  maxWidth: MediaQuery.of(context).size.width,
-                  maxHeight: MediaQuery.of(context).size.height * 0.85,
-                  minWidth: MediaQuery.of(context).size.width * 0.84,
-                  minHeight: MediaQuery.of(context).size.height * 0.7,
-                  cardController: cardController,
-                  cardBuilder: (context, index) {
-                    return Stack(
-                      children: <Widget>[
-                        PageView(
-                          controller: _pageController =
-                              PageController(initialPage: 0),
-                          children: _userProfile(size, index),
-                          scrollDirection: Axis.vertical,
-                        ),
-                        Positioned(
-                          top: 54,
-                          right: 36,
-                          child: _isLike != null &&
-                                  !_isLike &&
-                                  index == _currentIndex
-                              ? _likeOrDislikeIconOnPhoto(
-                                  FontAwesomeIcons.ban, Colors.redAccent)
-                              : Container(),
-                        ),
-                        Positioned(
-                          top: 50,
-                          left: 40,
-                          child: _isLike != null &&
-                                  _isLike &&
-                                  index == _currentIndex
-                              ? _likeOrDislikeIconOnPhoto(
-                                  FontAwesomeIcons.thumbsUp, Colors.green)
-                              : Container(),
-                        )
-                      ],
-                    );
-                  },
-                  swipeUpdateCallback:
-                      (DragUpdateDetails details, Alignment align) {
-                    if (align.x < 0) {
-                      //Card is LEFT swiping
-                      if (align.x < -3) {
-                        _isLike = false;
-                      }
-                      if (-(align.x * 0.1) > 1) {
-                        _xPosition = 1;
-                      } else {
-                        _xPosition = -(align.x * 0.1);
-                      }
-                    } else if (align.x > 0) {
-                      //Card is RIGHT swiping
-                      if (align.x > 3) {
-                        _isLike = true;
-                      }
-                      if ((align.x * 0.1) > 1) {
-                        _xPosition = 1;
-                      } else {
-                        _xPosition = (align.x * 0.1);
-                      }
+              child: TinderSwapCard(
+                orientation: AmassOrientation.BOTTOM,
+                totalNum: dummyUserDataListInSearch.length,
+                stackNum: 3,
+                swipeEdge: 4.0,
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: MediaQuery.of(context).size.height * 0.85,
+                minWidth: MediaQuery.of(context).size.width * 0.84,
+                minHeight: MediaQuery.of(context).size.height * 0.7,
+                cardController: cardController,
+                cardBuilder: (context, index) {
+                  return Stack(
+                    children: <Widget>[
+                      PageView(
+                        controller: _pageController =
+                            PageController(initialPage: 0),
+                        children: _userProfile(size, index),
+                        scrollDirection: Axis.vertical,
+                      ),
+                      Positioned(
+                        top: 54,
+                        right: 36,
+                        child: _isLike != null &&
+                                !_isLike &&
+                                index == _currentIndex
+                            ? _likeOrDislikeIconOnPhoto(
+                                FontAwesomeIcons.ban, Colors.redAccent)
+                            : Container(),
+                      ),
+                      Positioned(
+                        top: 50,
+                        left: 40,
+                        child:
+                            _isLike != null && _isLike && index == _currentIndex
+                                ? _likeOrDislikeIconOnPhoto(
+                                    FontAwesomeIcons.thumbsUp, Colors.green)
+                                : Container(),
+                      )
+                    ],
+                  );
+                },
+                swipeUpdateCallback:
+                    (DragUpdateDetails details, Alignment align) {
+                  if (align.x < 0) {
+                    //Card is LEFT swiping
+                    if (align.x < -3) {
+                      _isLike = false;
+                    }
+                    if (-(align.x * 0.1) > 1) {
+                      _xPosition = 1;
                     } else {
-                      _xPosition = 0;
+                      _xPosition = -(align.x * 0.1);
                     }
-                  },
-                  swipeCompleteCallback:
-                      (CardSwipeOrientation orientation, int index) {
-                    print('orientation is $orientation and index is $index');
-                    if (orientation == CardSwipeOrientation.LEFT ||
-                        orientation == CardSwipeOrientation.RIGHT) {
-                      setState(() {
-                        _currentIndex = index + 1;
-                      });
-                      _pageController.jumpToPage(0);
+                  } else if (align.x > 0) {
+                    //Card is RIGHT swiping
+                    if (align.x > 3) {
+                      _isLike = true;
                     }
-                    _isLike = null;
-                  },
-                ),
+                    if ((align.x * 0.1) > 1) {
+                      _xPosition = 1;
+                    } else {
+                      _xPosition = (align.x * 0.1);
+                    }
+                  } else {
+                    _xPosition = 0;
+                  }
+                },
+                swipeCompleteCallback:
+                    (CardSwipeOrientation orientation, int index) {
+                  print('orientation is $orientation and index is $index');
+                  if (orientation == CardSwipeOrientation.LEFT ||
+                      orientation == CardSwipeOrientation.RIGHT) {
+                    setState(() {
+                      _currentIndex = index + 1;
+                    });
+                    _pageController.jumpToPage(0);
+                  }
+                  _isLike = null;
+                },
               ),
             ),
           ),
@@ -216,7 +213,10 @@ class _SearchMain extends State<Cards>
               child: Container(
                 height: size.height,
                 width: size.width - 14,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.all(const Radius.circular(16)),
+                ),
               ),
             ),
           ),
@@ -422,21 +422,26 @@ class _SearchMain extends State<Cards>
         ),
       );
 
-  Container projectList() => Container(
-        width: 150,
-        height: 110,
-        padding: EdgeInsets.only(right: 10),
-        child: Column(
-          children: [
-            Container(
-              color: Colors.red,
-              height: 70,
-            ),
-            Container(
-              color: Colors.green,
-              height: 40,
-            ),
-          ],
+  Widget projectList() => InkWell(
+        onTap: () {
+          print("popo");
+        },
+        child: Container(
+          width: 150,
+          height: 110,
+          padding: EdgeInsets.only(right: 10),
+          child: Column(
+            children: [
+              Container(
+                color: Colors.red,
+                height: 70,
+              ),
+              Container(
+                color: Colors.green,
+                height: 40,
+              ),
+            ],
+          ),
         ),
       );
 }
