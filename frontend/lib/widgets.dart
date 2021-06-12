@@ -2,27 +2,34 @@ import 'package:Underground/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+const Color green = Color(0xFF16FF00);
+const Color blue = Color(0xFF4CFFC9);
+
 class UndergroundScaffold extends StatelessWidget {
   final Widget appBar, body, backgroundColor;
 
   UndergroundScaffold({this.appBar, this.body, this.backgroundColor});
 
   @override
-  Widget build(BuildContext context) => MediaQuery(
-
+  Widget build(BuildContext context) {
+    return MediaQuery(
       ///  Изменение системного размера текста заблокировано для того,
       /// чтобы вёрстка не падала
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
       child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: appBar,
+        backgroundColor: Colors.white,
+        appBar: appBar,
 
-          ///  Страница скроллится для того, чтобы при разделении экрана на два
-          /// (на андроиде), вёрстка не падала
-          body: SingleChildScrollView(
-              child: SafeArea(
+        ///  Страница скроллится для того, чтобы при разделении экрана на два
+        /// (на андроиде), вёрстка не падала
+        body: SingleChildScrollView(
+          child: SafeArea(
             child: body,
-          ))));
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class UndergroundTextField extends StatelessWidget {
@@ -46,23 +53,29 @@ class UndergroundTextField extends StatelessWidget {
       this.isPassword = false});
 
   @override
-  Widget build(BuildContext context) =>
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         Container(
-            width: double.infinity,
-            child: Row(children: [
+          width: double.infinity,
+          child: Row(
+            children: [
               Container(
                 width: MediaQuery.of(context).size.width - 100,
                 child: TextField(
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 16),
+                      vertical: 16.0,
+                      horizontal: 16,
+                    ),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey[300],
-                          width: 1.0,
-                        )),
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Colors.grey[300],
+                        width: 1.0,
+                      ),
+                    ),
                     labelStyle: TextStyle(
                         color: Colors.grey,
                         fontSize: 15.0,
@@ -79,14 +92,21 @@ class UndergroundTextField extends StatelessWidget {
                   controller: controller,
                 ),
               )
-            ])),
-        Text(errorText,
-            style: TextStyle(
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.normal,
-                fontSize: 12,
-                color: Colors.red))
-      ]);
+            ],
+          ),
+        ),
+        Text(
+          errorText,
+          style: TextStyle(
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.normal,
+            fontSize: 12,
+            color: Colors.red,
+          ),
+        )
+      ],
+    );
+  }
 }
 
 class UndergroundButton extends StatelessWidget {
@@ -98,32 +118,43 @@ class UndergroundButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-      onTap: onTap,
-      child: Opacity(
+        onTap: onTap,
+        child: Opacity(
           opacity: isOpacity ? 1 : 0.5,
           child: Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: <Color>[Color(0xFF16FF00), Color(0xFF4CFFC9)]),
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0.0, 14.0),
-                      blurRadius: 15.0,
-                      color: Color(0x420C9E18),
-                    )
-                  ]),
-              child: Center(
-                  child: Text(text,
-                      style: TextStyle(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: Color(0xFF333333))
-                          .copyWith(fontFamily: Fonts().light))))));
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Color(0xFF16FF00),
+                  Color(0xFF4CFFC9),
+                ],
+              ),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0.0, 14.0),
+                  blurRadius: 15.0,
+                  color: Color(0x420C9E18),
+                )
+              ],
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  color: Color(0xFF333333),
+                ).copyWith(fontFamily: Fonts().light),
+              ),
+            ),
+          ),
+        ),
+      );
 }
 
 class UndergroundOutlinedButton {
@@ -134,7 +165,10 @@ class UndergroundOutlinedButton {
   );
 
   final kGradientBoxDecoration = BoxDecoration(
-    gradient: LinearGradient(colors: [Color(0xFF16FF00), Color(0xFF4CFFC9)]),
+    gradient: LinearGradient(colors: [
+      Color(0xFF16FF00),
+      Color(0xFF4CFFC9),
+    ]),
     borderRadius: BorderRadius.circular(32),
   );
 }
