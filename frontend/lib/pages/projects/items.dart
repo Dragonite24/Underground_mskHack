@@ -26,6 +26,18 @@ class _ProjectsItemsState extends State<ProjectsItems> {
             child: TabBar(
               isScrollable: true,
               unselectedLabelColor: Colors.white.withOpacity(0.4),
+              // indicator: BoxDecoration(
+              //   gradient: LinearGradient(
+              //     colors: [Colors.black, Colors.redAccent],
+              //   ),
+              //   border: Border(
+              //     bottom: BorderSide(
+              //       width: 3,
+              //       style: BorderStyle.solid,
+              //       color: Colors.red,
+              //     ),
+              //   ),
+              // ),
               indicatorColor: green,
               tabs: [
                 Tab(
