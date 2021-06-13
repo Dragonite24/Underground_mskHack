@@ -6,35 +6,26 @@ import 'pages/signIn/login.dart';
 
 void main() => runApp(MyApp());
 
-final GlobalKey<UndergroundNavbarState> navbarKey =
-    GlobalKey<UndergroundNavbarState>();
-final GlobalKey<NavigatorState> mapKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> projectsKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> cardsKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> chatKey = GlobalKey<NavigatorState>();
-
-final GlobalKey<NavigatorState> profileKey = GlobalKey<NavigatorState>();
-
-GlobalKey<NavigatorState> currentNavigatorKey(index) {
-  switch (index) {
-    case 0:
-      return mapKey;
-      break;
-    case 1:
-      return projectsKey;
-      break;
-    case 2:
-      return cardsKey;
-      break;
-    case 3:
-      return chatKey;
-      break;
-    case 4:
-      return profileKey;
-      break;
-  }
-  return null;
-}
+// GlobalKey<NavigatorState> currentNavigatorKey(index) {
+//   switch (index) {
+//     case 0:
+//       return mapKey;
+//       break;
+//     case 1:
+//       return projectsKey;
+//       break;
+//     case 2:
+//       return cardsKey;
+//       break;
+//     case 3:
+//       return chatKey;
+//       break;
+//     case 4:
+//       return profileKey;
+//       break;
+//   }
+//   return null;
+// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -70,10 +61,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Tab _tabItem(IconData iconData, int index, Color selectedColor) {
     return Tab(
-        icon: FaIcon(iconData,
-            size: 26,
-            color:
-                _tabController.index == index ? selectedColor : Colors.grey));
+      icon: FaIcon(
+        iconData,
+        size: 26,
+        color: _tabController.index == index ? selectedColor : Colors.grey,
+      ),
+    );
   }
 
   @override
