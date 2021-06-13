@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 const Color green = Color(0xFF16FF00);
 const Color blue = Color(0xFF4CFFC9);
+const Color black = Color(0xFF333333);
 
 class UndergroundScaffold extends StatelessWidget {
   final Widget appBar, body, backgroundColor;
