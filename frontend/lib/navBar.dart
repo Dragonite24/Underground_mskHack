@@ -72,7 +72,7 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                 backgroundColor: Colors.white,
                 items: <BottomNavigationBarItem>[
                   navbarItem("Карты", "map", 0),
-                  navbarItem("Проекты", "project", 1),
+                  navbarItem("Лента", "project", 1),
                   navbarItem("Карточки", "doc", 2),
                   navbarItem("Чат", "chat", 3),
                   navbarItem("Профиль", "person", 4)
@@ -112,9 +112,12 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
 
   BottomNavigationBarItem navbarItem(String name, image, int index) {
     return BottomNavigationBarItem(
-      icon: SvgPicture.asset(_currentIndex == index
-          ? "images/navBar/${image}_active.svg"
-          : "images/navBar/${image}_inactive.svg"),
+      icon: SvgPicture.asset(
+        _currentIndex == index
+            ? "images/navBar/${image}_active.svg"
+            : "images/navBar/${image}_inactive.svg",
+        height: 25,
+      ),
       title: Text(
         name,
         style: TextStyle(
@@ -124,7 +127,6 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
           color: _currentIndex == index ? Color(0xFF333333) : null,
         ),
       ),
-
     );
   }
 }
