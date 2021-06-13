@@ -30,7 +30,10 @@ class _EventsState extends State<Events> {
             child: ListView.builder(
                 itemCount: events.length,
                 itemBuilder: (BuildContext context, int index) =>
-                    eventCard(index)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: eventCard(index),
+                    )),
           );
         } else {
           return Center(
