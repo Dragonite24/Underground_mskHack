@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'navBar.dart';
 import 'pages/signIn/login.dart';
+
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+// initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+const AndroidInitializationSettings initializationSettingsAndroid =
+    AndroidInitializationSettings('ic_launcher_foreground');
+
+final InitializationSettings initializationSettings =
+    InitializationSettings(android: initializationSettingsAndroid);
 
 void main() => runApp(MyApp());
 
@@ -52,6 +62,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     super.initState();
     _tabController = new TabController(vsync: this, length: 4);
     _tabController.addListener(_handleTabSelection);
+    flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onSelectNotification: selectNotification,
+    );
+  }
+
+  Future selectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: $payload');
+    }
+    // await Navigator.push(
+    //   context,
+    //   MaterialPageRoute<void>(builder: (context) => SecondScreen(payload)),
+    // );
   }
 
   void _handleTabSelection() {
