@@ -209,6 +209,7 @@ class Http {
     var events;
     if (response.statusCode < 300) {
       events = eventsFromJson(response.body);
+      print(response.body);
       log('getListEvents pass');
       return events;
     } else {
