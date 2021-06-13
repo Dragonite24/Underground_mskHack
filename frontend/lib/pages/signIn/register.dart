@@ -1,6 +1,8 @@
 import 'package:team_up/const.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:team_up/pages/signIn/%D1%81onfirmation.dart';
+import 'package:team_up/pages/signIn/success.dart';
 import '../../http.dart';
 import '../../main.dart';
 import '../../snackbar.dart';
@@ -105,7 +107,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                               if (value1 != null) {
                                 // если зарегались, то логинимся
                                 Http()
-                                    .getToken(password.text, username.text)
+                                    .getToken(username.text, password.text)
                                     .then(
                                   (value2) async {
                                     await prefs
@@ -119,7 +121,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                               MaterialPageRoute<void>(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          MyHomePage())));
+                                                          Success())));
                                     });
                                   },
                                 );

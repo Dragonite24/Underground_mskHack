@@ -2,6 +2,7 @@ import 'package:team_up/pages/projects/projects.dart';
 import 'package:team_up/widgets.dart';
 import 'package:flutter/material.dart';
 
+// Контроллер верхней навигационной вкладки Проекты
 class ProjectsItems extends StatefulWidget {
   const ProjectsItems({Key key}) : super(key: key);
 
@@ -70,14 +71,8 @@ class _ProjectsItemsState extends State<ProjectsItems> {
                 ),
               ],
             ),
-            preferredSize: Size.fromHeight(30.0),
+            preferredSize: Size.fromHeight(0.0),
           ),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Icon(Icons.notifications, color: Colors.black),
-            ),
-          ],
         ),
         body: TabBarView(
           children: <Widget>[

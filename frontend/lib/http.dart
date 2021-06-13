@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/afterReg.dart';
+import 'models/myProgects.dart';
 
 class Http {
   final String url = "hollapuppy.pythonanywhere.com"; // api url
@@ -39,6 +40,7 @@ class Http {
       body: body,
       headers: {'Content-type': 'application/json'},
     );
+    print(body);
     GetToken token;
     if (response.statusCode < 300) {
       log('getToken STATUS CODE: ' + response.statusCode.toString());
@@ -61,7 +63,7 @@ class Http {
       'Content-Type': 'application/json'
     };
     final response = await http.post(
-      Uri.http(url, "/api/individ/new"),
+      Uri.http(url, "/api/individual/new"),
       body: body,
       headers: headers,
     );
@@ -74,6 +76,23 @@ class Http {
       log('Login STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
       return false;
+    }
+  }
+
+  Future<List<GetMyProjects>> getMyProjects() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    final response = await http.get(
+      Uri.http(url, "/api/project/all"),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    if (response.statusCode < 300) {
+      List<GetMyProjects> proj = getMyProjectsFromJson(response.body);
+      return proj;
+    } else {
+      log('getmyProjects STATUS CODE: ' + response.statusCode.toString());
+      log(response.body);
+      throw ('getmyProjects STATUS CODE: ' + response.statusCode.toString());
     }
   }
 }

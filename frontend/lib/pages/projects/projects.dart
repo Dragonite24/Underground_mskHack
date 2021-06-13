@@ -1,44 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:team_up/indicator.dart';
+import 'package:team_up/models/myProgects.dart';
 
 import '../../const.dart';
+import '../../http.dart';
 
+// Проекты - Вкладка Проекты
 class MyProjects extends StatefulWidget {
   @override
   _MyProjectsState createState() => _MyProjectsState();
 }
 
 class _MyProjectsState extends State<MyProjects> {
+  bool isLoading = true;
+  List<GetMyProjects> projects;
+
+  @override
+  void initState() {
+    Http().getMyProjects().then((value) {
+      if (value != null) {
+        setState(() {
+          projects = value;
+          print(projects);
+        });
+      } else {
+        var snackBar = SnackBar(content: Text("Что-то пошло не так"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-      child: Scaffold(
-          backgroundColor: Color(0xFFF0F0F0),
+      child: isLoading
+          ? Indicator.circle
+          : Scaffold(
+              backgroundColor: Color(0xFFF0F0F0),
 
-          ///  Страница скроллится для того, чтобы при разделении экрана на два
-          /// (на андроиде), вёрстка не падала
-          body: SingleChildScrollView(
-              child: SafeArea(
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
+              ///  Страница скроллится для того, чтобы при разделении экрана на два
+              /// (на андроиде), вёрстка не падала
+              body: SingleChildScrollView(
+                  child: SafeArea(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                      projectCard('Один', 'Описание',
+                          'https://cdn5.zp.ru/job/attaches/2018/08/84/a9/84a905e003a615c706f0b6d657ce940e.jpg'),
+                      projectCard('Два', 'Описание',
+                          'https://st4.depositphotos.com/1046751/23974/i/950/depositphotos_239743782-stock-photo-business-team-discussing-information-from.jpg'),
+                      projectCard('Три', 'Описание',
+                          'https://hub.ldpr.ru/media/images/yaroslavl/8817f6a0da39bcf571073e34a03db69ea91d1bd586718309a8fcab499f67dc01.jpg'),
+                      projectCard('Четыре', 'Описание',
+                          'https://terve.su/wp-content/uploads/2018/08/kak-prestat-speshit-i-nachat-rabotat-1.jpg'),
+                    ],
                   ),
-                  projectCard('Один', 'Описание',
-                      'https://cdn5.zp.ru/job/attaches/2018/08/84/a9/84a905e003a615c706f0b6d657ce940e.jpg'),
-                  projectCard('Два', 'Описание',
-                      'https://st4.depositphotos.com/1046751/23974/i/950/depositphotos_239743782-stock-photo-business-team-discussing-information-from.jpg'),
-                  projectCard('Три', 'Описание',
-                      'https://hub.ldpr.ru/media/images/yaroslavl/8817f6a0da39bcf571073e34a03db69ea91d1bd586718309a8fcab499f67dc01.jpg'),
-                  projectCard('Четыре', 'Описание',
-                      'https://terve.su/wp-content/uploads/2018/08/kak-prestat-speshit-i-nachat-rabotat-1.jpg'),
-                ],
-              ),
-            ),
-          ))),
+                ),
+              ))),
     );
   }
 
