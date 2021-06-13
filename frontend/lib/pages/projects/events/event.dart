@@ -50,17 +50,17 @@ class _EventCardState extends State<EventCard> {
               Stack(
                 children: [
                   Container(
-                    height: 300,
+                    height: 270,
                     child: Image.asset(
                       "images/backgrounds/buisness.jpg",
                       fit: BoxFit.cover,
                     ),
                   ),
                   Positioned(
-                    bottom: 15,
+                    bottom: 30,
                     right: 80,
                     child: Container(
-                      height: 46,
+                      height: 60,
                       child: FloatingActionButton(
                           backgroundColor: Colors.white,
                           onPressed: null,
@@ -72,123 +72,197 @@ class _EventCardState extends State<EventCard> {
                     ),
                   ),
                   Positioned(
-                    bottom: 15,
+                    bottom: 30,
                     right: 15,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: <Color>[
-                            Color(0xFF16FF00),
-                            Color(0xFF4CFFC9),
-                          ],
-                        ),
-                      ),
-                      height: 46,
-                      child: FloatingActionButton(
-                          backgroundColor: green,
-                          onPressed: null,
+                    child: FloatingActionButton(
+                        onPressed: null,
+                        child: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              colors: <Color>[
+                                Color(0xFF16FF00),
+                                Color(0xFF4CFFC9),
+                              ],
+                            ),
+                          ),
                           child: Icon(
                             Icons.notifications_active,
                             size: 23,
                             color: black,
-                          )),
-                    ),
+                          ),
+                        )),
                   ),
+                  Positioned(
+                      bottom: 0,
+                      child: Container(
+                        width: double.infinity,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          color: Colors.white,
+                        ),
+                      ))
                 ],
               ),
               Container(
-                height: 500,
-                width: MediaQuery.of(context).size.width * 0.9,
-                color: Colors.white,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 15),
-                    Text(
-                      event.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24,
-                              color: Color(0xFF333333))
-                          .copyWith(fontFamily: Fonts().medium),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      event.fullDesc,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: Color(0xFF333333))
-                          .copyWith(fontFamily: Fonts().thin),
-                    ),
-                    SizedBox(height: 50),
-                    Text(
-                      event.date.toString(),
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Color(0xFF333333),
-                      ).copyWith(fontFamily: Fonts().light),
-                    ),
-                    Text(
-                      event.shortDesc.toString(),
-                      style: TextStyle(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: Color(0xFF333333))
-                          .copyWith(fontFamily: Fonts().thin),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      'Контакты',
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Color(0xFF333333),
-                      ).copyWith(fontFamily: Fonts().light),
-                    ),
-                    Text(event.contactEmail,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.red,
+                ),
+                width: double.infinity,
+                child: Container(
+                  padding: EdgeInsets.only(left: 16, right: 16),
+                  color: Colors.white,
+                  height: 540,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        event.name,
                         style: TextStyle(
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14,
-                                color: Color(0xFF16FF00))
-                            .copyWith(fontFamily: Fonts().light)),
-                    SizedBox(height: 10),
-                    Text(event.eventSite,
-                        style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14,
-                                color: Color(0xFF16FF00))
-                            .copyWith(fontFamily: Fonts().light)),
-                    SizedBox(height: 15),
-                    Text('Участники',
-                        style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 24,
                                 color: Color(0xFF333333))
-                            .copyWith(fontFamily: Fonts().medium)),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: <Widget>[
-                          frendList(),
-                          frendList(),
-                          frendList(),
-                        ],
+                            .copyWith(fontFamily: Fonts().medium),
                       ),
-                    ),
-                  ],
+                      Text(
+                        event.fullDesc,
+                        overflow: TextOverflow.clip,
+                        maxLines: 3,
+                        style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Color(0xFF333333))
+                            .copyWith(fontFamily: Fonts().thin),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        event.date.toString(),
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: Color(0xFF333333),
+                        ).copyWith(fontFamily: Fonts().light),
+                      ),
+                      Text(
+                        event.shortDesc.toString(),
+                        style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                color: Color(0xFF333333))
+                            .copyWith(fontFamily: Fonts().thin),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        'Контакты',
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xFF333333),
+                        ).copyWith(fontFamily: Fonts().light),
+                      ),
+                      Text(event.contactEmail,
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  color: Color(0xFF16FF00))
+                              .copyWith(fontFamily: Fonts().light)),
+                      SizedBox(height: 5),
+                      Text(event.eventSite,
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  color: Color(0xFF16FF00))
+                              .copyWith(fontFamily: Fonts().light)),
+                      SizedBox(height: 10),
+                      Text('Участники',
+                          style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 18,
+                                  color: Color(0xFF333333))
+                              .copyWith(fontFamily: Fonts().medium)),
+                      SizedBox(height: 10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: <Widget>[
+                            frendList('Веня'),
+                            frendList('Семен'),
+                            frendList('Оксана'),
+                            frendList('Саня'),
+                            frendList('Веня1'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        'Полное описание мероприятия',
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: Color(0xFF333333),
+                        ).copyWith(fontFamily: Fonts().light),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        event.fullDesc,
+                        overflow: TextOverflow.clip,
+                        maxLines: 3,
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: Color(0xFF333333),
+                        ).copyWith(fontFamily: Fonts().thin),
+                      ),
+                      SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          // Подать заявку
+                        },
+                        child: Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Подать заявку',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                  color: Color(0xFF333333),
+                                ).copyWith(fontFamily: Fonts().light),
+                              ),
+                              decoration:
+                                  UndergroundOutlinedButton().kInnerDecoration,
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            height: 50,
+                            decoration: UndergroundOutlinedButton()
+                                .kGradientBoxDecoration,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -196,7 +270,7 @@ class _EventCardState extends State<EventCard> {
         ),
       );
 
-  Container frendList() => Container(
+  Container frendList(String name) => Container(
       padding: EdgeInsets.only(right: 10),
       child: Column(children: [
         InkWell(
@@ -207,6 +281,13 @@ class _EventCardState extends State<EventCard> {
                   radius: 29,
                   backgroundColor: Colors.red,
                   backgroundImage: null,
-                )))
+                ))),
+        Text(name,
+            style: TextStyle(
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 14,
+                    color: Color(0xFF333333))
+                .copyWith(fontFamily: Fonts().regular)),
       ]));
 }
