@@ -24,6 +24,8 @@ dependencies:
   page_transition: any
   shared_preferences: ^2.0.6
   google_maps_flutter: any
+  add_2_calendar: ^2.1.0
+  flutter_local_notifications: ^6.0.0
 
 dev_dependencies:
   # flutter_test:
