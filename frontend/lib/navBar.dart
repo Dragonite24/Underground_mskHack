@@ -1,6 +1,6 @@
-import 'package:Underground/pages/chat/chatlist.dart';
-import 'package:Underground/pages/maps/maps.dart';
-import 'package:Underground/pages/projects/items.dart';
+import 'package:team_up/pages/chat/chatlist.dart';
+import 'package:team_up/pages/maps/maps.dart';
+import 'package:team_up/pages/projects/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';

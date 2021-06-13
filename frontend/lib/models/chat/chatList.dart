@@ -1,4 +1,4 @@
-import 'package:Underground/pages/chat/chatroom.dart';
+import 'package:team_up/pages/chat/chatroom.dart';
 import 'package:flutter/material.dart';
 
 class ChatModelList extends StatefulWidget {

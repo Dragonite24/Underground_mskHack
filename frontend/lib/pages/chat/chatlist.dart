@@ -1,4 +1,4 @@
-import 'package:Underground/models/chat/chatList.dart';
+import 'package:team_up/models/chat/chatList.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:Underground/widgets.dart';
+import 'package:team_up/widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../const.dart';

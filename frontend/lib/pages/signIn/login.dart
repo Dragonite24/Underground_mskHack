@@ -1,5 +1,5 @@
-import 'package:Underground/const.dart';
-import 'package:Underground/widgets.dart';
+import 'package:team_up/const.dart';
+import 'package:team_up/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../http.dart';

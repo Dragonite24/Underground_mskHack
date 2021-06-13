@@ -1,5 +1,5 @@
-import 'package:Underground/commons/constData.dart';
-import 'package:Underground/commons/userProfileCommon.dart';
+import 'package:team_up/commons/constData.dart';
+import 'package:team_up/commons/userProfileCommon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

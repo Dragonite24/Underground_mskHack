@@ -1,5 +1,5 @@
-import 'package:Underground/code_input/src/verify_code_input_widget.dart';
-import 'package:Underground/const.dart';
+import 'package:team_up/code_input/src/verify_code_input_widget.dart';
+import 'package:team_up/const.dart';
 import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../../widgets.dart';

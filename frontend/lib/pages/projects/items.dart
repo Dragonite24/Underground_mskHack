@@ -1,5 +1,5 @@
-import 'package:Underground/pages/projects/projects.dart';
-import 'package:Underground/widgets.dart';
+import 'package:team_up/pages/projects/projects.dart';
+import 'package:team_up/widgets.dart';
 import 'package:flutter/material.dart';
 
 class ProjectsItems extends StatefulWidget {
