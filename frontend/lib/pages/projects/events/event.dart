@@ -52,6 +52,7 @@ class _EventCardState extends State<EventCard> {
               children: [
                 Container(
                   height: 270,
+                  width: double.infinity,
                   child: Image.asset(
                     "images/backgrounds/buisness.jpg",
                     fit: BoxFit.cover,
@@ -61,11 +62,12 @@ class _EventCardState extends State<EventCard> {
                   bottom: 30,
                   right: 80,
                   child: Container(
-                    height: 60,
+                    // height: 60,
                     child: FloatingActionButton(
                       backgroundColor: Colors.white,
                       onPressed: () {
                         // TODO Calendar
+                        print("calendar");
                       },
                       child: Icon(
                         Icons.calendar_today,
@@ -81,6 +83,7 @@ class _EventCardState extends State<EventCard> {
                   child: FloatingActionButton(
                     onPressed: () {
                       // TODO Notification
+                      print("notification");
                     },
                     child: Container(
                       height: 60,
@@ -96,26 +99,26 @@ class _EventCardState extends State<EventCard> {
                       ),
                       child: Icon(
                         Icons.notifications_active_outlined,
-                        size: 25,
+                        size: 27,
                         color: black,
                       ),
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  child: Container(
-                    width: double.infinity,
-                    height: 15,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                      color: Colors.white,
-                    ),
-                  ),
-                )
+                // Positioned(
+                //   bottom: 0,
+                //   child: Container(
+                //     width: double.infinity,
+                //     height: 15,
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.only(
+                //         topLeft: Radius.circular(20),
+                //         topRight: Radius.circular(20),
+                //       ),
+                //       color: Colors.white,
+                //     ),
+                //   ),
+                // )
               ],
             ),
             Container(
