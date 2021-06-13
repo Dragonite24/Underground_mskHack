@@ -57,4 +57,6 @@ urlpatterns = [
     path('leaderproject/update/<int:pk>', ProjectLeaderUpdateView.as_view()),
     path('leaderproject/all', ProjectLeaderListView.as_view()),
     path('leaderproject/new', ProjectLeaderCreateView.as_view()),
+
+    # path('recomms/<int:user>', recommend_team, name="recommend_team")
 ]
