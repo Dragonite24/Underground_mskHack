@@ -13,6 +13,7 @@ class Http {
   final String url = "hollapuppy.pythonanywhere.com"; // api url
 
   Future<AfterRegister> register(String name, password, email) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     var body = json.encoder
         .convert({"username": name, "password": password, "email": email});
     final response = await http.post(
@@ -23,6 +24,9 @@ class Http {
     AfterRegister model;
     if (response.statusCode < 300) {
       model = afterRegisterFromJson(response.body);
+      preferences.setString('username', name);
+      preferences.setString('password', password);
+      print(response.body);
       log('Register STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
       return model;
@@ -34,8 +38,9 @@ class Http {
   }
 
   Future<GetToken> getToken(String username, password) async {
-    var body =
-        json.encoder.convert({"username": username, "password": password});
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var body = json.encoder
+        .convert({"username": "$username", "password": "$password"});
     final response = await http.post(
       Uri.http(url, "/api/token/"),
       body: body,
@@ -46,6 +51,11 @@ class Http {
     if (response.statusCode < 300) {
       log('getToken STATUS CODE: ' + response.statusCode.toString());
       token = getTokenFromJson(response.body);
+
+      preferences.setString('username', username);
+      preferences.setString('password', password);
+      preferences.setString('token_access', token.access);
+      preferences.setString('token_refresh', token.refresh);
       return token;
     } else {
       log('getToken STATUS CODE: ' + response.statusCode.toString());
@@ -54,11 +64,38 @@ class Http {
     }
   }
 
+  Future<String> refreshToken() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var token = preferences.getString('token_refresh');
+    var body = json.encoder.convert({"refresh": token});
+    final headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json'
+    };
+    final response = await http.post(
+      Uri.http(url, "/api/token/refresh/"),
+      body: body,
+      headers: headers,
+    );
+    dynamic new_token;
+    if (response.statusCode < 300) {
+      log('refreshToken STATUS CODE: ' + response.statusCode.toString());
+      print(response.body);
+      new_token = jsonDecode(response.body);
+      preferences.setString('token_acces', new_token.access);
+      return new_token.access;
+    } else {
+      log('refreshToken STATUS CODE: ' + response.statusCode.toString());
+      log(response.body);
+      return '';
+    }
+  }
+
   Future<bool> newIndivid(String username, email, id) async {
     var body =
         json.encoder.convert({"FIO": username, "email": email, "user": id});
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    var token = preferences.getString('token');
+    var token = preferences.getString('token_access');
     final headers = {
       'Authorization': 'Bearer $token',
       'Content-Type': 'application/json'
@@ -70,25 +107,36 @@ class Http {
     );
     print(response.statusCode);
     if (response.statusCode == 200) {
-      log('Login STATUS CODE: ' + response.statusCode.toString());
+      log('newIndivid pass');
       log(response.body);
       return true;
     } else {
-      log('Login STATUS CODE: ' + response.statusCode.toString());
+      log('newIndivid STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
       return false;
     }
   }
 
   Future<List<GetMyProjects>> getMyProjects() async {
+    //await refreshToken();
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    final token = preferences.getString('token');
+    final token = preferences.getString('token_access');
+    log(token);
+    final username = preferences.getString('username');
+    final password = preferences.getString('password');
     final response = await http.get(
       Uri.http(url, "/api/project/all"),
-      headers: {'Authorization': 'Bearer $token'},
+      headers: {
+        "Authorization": "Bearer $token",
+        "username": username,
+        "password": password
+      },
     );
+    var proj;
     if (response.statusCode < 300) {
-      List<GetMyProjects> proj = getMyProjectsFromJson(response.body);
+      print(response.body);
+      proj = getMyProjectsFromJson(response.body);
+      log('getmyProjects pass');
       return proj;
     } else {
       log('getmyProjects STATUS CODE: ' + response.statusCode.toString());

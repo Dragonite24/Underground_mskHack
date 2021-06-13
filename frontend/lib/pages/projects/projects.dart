@@ -52,14 +52,10 @@ class _MyProjectsState extends State<MyProjects> {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                       ),
-                      projectCard('Один', 'Описание',
-                          'https://cdn5.zp.ru/job/attaches/2018/08/84/a9/84a905e003a615c706f0b6d657ce940e.jpg'),
-                      projectCard('Два', 'Описание',
-                          'https://st4.depositphotos.com/1046751/23974/i/950/depositphotos_239743782-stock-photo-business-team-discussing-information-from.jpg'),
-                      projectCard('Три', 'Описание',
-                          'https://hub.ldpr.ru/media/images/yaroslavl/8817f6a0da39bcf571073e34a03db69ea91d1bd586718309a8fcab499f67dc01.jpg'),
-                      projectCard('Четыре', 'Описание',
-                          'https://terve.su/wp-content/uploads/2018/08/kak-prestat-speshit-i-nachat-rabotat-1.jpg'),
+                      ListView.builder(
+                          itemCount: projects.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                              projectCard(index)),
                     ],
                   ),
                 ),
@@ -67,7 +63,49 @@ class _MyProjectsState extends State<MyProjects> {
     );
   }
 
-  Widget projectCard(String name, String descr, String url) => Padding(
+  Column projectTile(int index) => Column(
+        children: [
+          SizedBox(height: 20),
+          Container(
+              height: 67,
+              padding:
+                  EdgeInsets.only(top: 13, bottom: 14, left: 20, right: 17),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: Column(children: [
+                Row(children: [
+                  projects[index].name != null
+                      ? RichText(
+                          text: TextSpan(children: [
+                          TextSpan(
+                              text: '+${projects[index].date.toString()}',
+                              style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  color: Colors.red)),
+                          TextSpan(
+                              text: "балла",
+                              style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Colors.red)),
+                        ]))
+                      : Text("В обработке",
+                          style: TextStyle(
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.red)),
+                ]),
+              ])),
+          SizedBox(height: 26),
+          Container(height: 1, width: double.infinity, color: Color(0xffEAEFF3))
+        ],
+      );
+
+  Widget projectCard(index) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: Stack(
           children: [
@@ -78,7 +116,8 @@ class _MyProjectsState extends State<MyProjects> {
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage("$url"),
+                  //image: NetworkImage("$url"),
+                  image: null,
                 ),
               ),
             ),
@@ -98,7 +137,7 @@ class _MyProjectsState extends State<MyProjects> {
                 bottom: 33,
                 left: 15,
                 child: Text(
-                  name,
+                  projects[index].name,
                   style: TextStyle(
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,
@@ -110,7 +149,7 @@ class _MyProjectsState extends State<MyProjects> {
                 bottom: 15,
                 left: 15,
                 child: Text(
-                  descr,
+                  projects[index].shortDesc,
                   style: TextStyle(
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,
