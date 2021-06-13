@@ -41,15 +41,16 @@ class UndergroundTextField extends StatelessWidget {
   final bool isPhone;
   final bool isPassword;
 
-  UndergroundTextField(
-      {this.text = "",
-      this.icon = "",
-      this.hintText = "",
-      this.errorText = "",
-      this.controller,
-      this.onChanged,
-      this.isPhone = false,
-      this.isPassword = false});
+  UndergroundTextField({
+    this.text = "",
+    this.icon = "",
+    this.hintText = "",
+    this.errorText = "",
+    this.controller,
+    this.onChanged,
+    this.isPhone = false,
+    this.isPassword = false,
+  });
 
   @override
   Widget build(BuildContext context) {
