@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-List<MyEvents> myEventsFromJson(String str) =>
-    List<MyEvents>.from(json.decode(str).map((x) => MyEvents.fromJson(x)));
+List<Event> myEventsFromJson(String str) =>
+    List<Event>.from(json.decode(str).map((x) => Event.fromJson(x)));
 
-String myEventsToJson(List<MyEvents> data) =>
+String myEventsToJson(List<Event> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class MyEvents {
-  MyEvents({
+class Event {
+  Event({
     this.poster,
     this.name,
     this.shortDesc,
@@ -29,7 +29,7 @@ class MyEvents {
   String time;
   String address;
 
-  factory MyEvents.fromJson(Map<String, dynamic> json) => MyEvents(
+  factory Event.fromJson(Map<String, dynamic> json) => Event(
         poster: json["poster"],
         name: json["name"] == null ? null : json["name"],
         shortDesc: json["short_desc"] == null ? null : json["short_desc"],

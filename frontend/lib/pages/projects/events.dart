@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_up/const.dart';
 import 'package:team_up/http.dart';
-import 'package:team_up/models/event.dart';
+import 'package:team_up/models/myEvents.dart';
 import 'package:team_up/widgets.dart';
 
 // Проекты - Вкладка События
