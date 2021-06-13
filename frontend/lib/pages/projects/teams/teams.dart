@@ -17,6 +17,7 @@ class TeamsItem extends StatefulWidget {
 
 class _TeamsItemState extends State<TeamsItem> {
   List<Teams> teams;
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Teams>>(
@@ -29,9 +30,10 @@ class _TeamsItemState extends State<TeamsItem> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
-                itemCount: teams.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    teamCard(index)),
+              itemCount: teams.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  newTeamCard(index),
+            ),
           );
         } else {
           return Center(
@@ -42,82 +44,102 @@ class _TeamsItemState extends State<TeamsItem> {
     );
   }
 
-  Widget teamCard(index) => ClipRRect(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0.0, 0.0),
-                blurRadius: 10.0,
-                color: Colors.black.withOpacity(0.1),
-              )
-            ],
-          ),
-          child: Column(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        "images/profile/underground.jpg",
+  Widget newTeamCard(int index) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: ClipRRect(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(
+                          "images/profile/underground.jpg",
+                        ),
+                        radius: 45,
                       ),
-                      radius: 45,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Text(
-                      teams[index].name,
+                    Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Text(
+                        teams[index].name,
+                        style: TextStyle(
+                          fontFamily: Fonts().medium,
+                          fontSize: 20,
+                          color: black,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        teams[index].desc,
+                        style: TextStyle(
+                          fontFamily: Fonts().medium,
+                          fontSize: 12,
+                          color: black.withOpacity(0.6),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "+7 (920) 123 45-67, example@mail.com",
                       style: TextStyle(
                         fontFamily: Fonts().medium,
-                        fontSize: 20,
-                        color: black,
+                        fontSize: 12,
+                        color: Colors.green,
                       ),
                     ),
-                  ),
-                  Text(
-                    teams[index].comp,
-                    style: TextStyle(
-                      fontFamily: Fonts().medium,
-                      fontSize: 12,
-                      color: Colors.green,
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 6),
+                      child: Text(
+                        "О нас",
+                        style: TextStyle(
+                          fontFamily: Fonts().medium,
+                          fontSize: 16,
+                          color: black,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      teams[index].name,
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing eleit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laborrris nisi ut aliquip ex ea commodo. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                       style: TextStyle(
-                        fontFamily: Fonts().medium,
-                        fontSize: 16,
-                        color: black,
+                        fontFamily: Fonts().regular,
+                        fontSize: 14,
+                        color: black.withOpacity(0.6),
                       ),
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing eleit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laborrris nisi ut aliquip ex ea commodo. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                    style: TextStyle(
-                      fontFamily: Fonts().regular,
-                      fontSize: 14,
-                      color: black.withOpacity(0.6),
-                    ),
-                    maxLines: 5,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
+          borderRadius: BorderRadius.circular(10),
         ),
-      );
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0.0, 0.0),
+              blurRadius: 10.0,
+              color: Colors.black.withOpacity(0.1),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
