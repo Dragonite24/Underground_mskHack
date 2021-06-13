@@ -9,6 +9,8 @@ from rest_framework.renderers import JSONRenderer
 
 from .models import *
 from .serializers import *
+from .recomm import getRecomms
+import json
 
 
 class UserListView(generics.ListAPIView):
@@ -262,3 +264,17 @@ class ProjectLeaderCreateView(generics.CreateAPIView):
     queryset = ProjectLeader.objects.all()
     serializer_class = CreateProjectLeaderSerializer
 
+
+def recommend_team(request, user_id):
+    data = [
+        [0, 1, 2, 2],
+        [2, 1, 1, 1],
+        [0, 2, 1, 1],
+        [2, 2, 1, 0],
+    ]
+    return json.dumps(
+        getRecomms(
+            data,
+            user_id
+        )
+    )
