@@ -1,4 +1,7 @@
+import 'package:team_up/pages/projects/events.dart';
+import 'package:team_up/pages/projects/peoples.dart';
 import 'package:team_up/pages/projects/projects.dart';
+import 'package:team_up/pages/projects/teams.dart';
 import 'package:team_up/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -76,24 +79,10 @@ class _ProjectsItemsState extends State<ProjectsItems> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Container(
-              child: MyProjects(),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 3'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 3'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 4'),
-              ),
-            ),
+            MyProjects(),
+            Teams(),
+            Poples(),
+            Events(),
           ],
         ),
       ),
