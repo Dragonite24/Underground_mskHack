@@ -2,6 +2,8 @@ import 'dart:convert';
 
 Event eventFromJson(String str) => Event.fromJson(json.decode(str));
 
+String eventToJson(Event data) => json.encode(data.toJson());
+
 class Event {
   Event({
     this.id,
@@ -11,11 +13,14 @@ class Event {
     this.type,
     this.date,
     this.time,
+    this.dateEnd,
+    this.timeEnd,
     this.fullDesc,
     this.address,
     this.contactEmail,
     this.eventSite,
     this.team,
+    this.claim,
   });
 
   int id;
@@ -25,11 +30,14 @@ class Event {
   String type;
   DateTime date;
   String time;
+  DateTime dateEnd;
+  String timeEnd;
   String fullDesc;
   String address;
   String contactEmail;
   String eventSite;
-  List<dynamic> team;
+  int team;
+  List<int> claim;
 
   factory Event.fromJson(Map<String, dynamic> json) => Event(
         id: json["id"] == null ? null : json["id"],
@@ -39,14 +47,18 @@ class Event {
         type: json["type"] == null ? null : json["type"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
         time: json["time"] == null ? null : json["time"],
+        dateEnd:
+            json["date_end"] == null ? null : DateTime.parse(json["date_end"]),
+        timeEnd: json["time_end"] == null ? null : json["time_end"],
         fullDesc: json["full_desc"] == null ? null : json["full_desc"],
         address: json["address"] == null ? null : json["address"],
         contactEmail:
             json["contact_email"] == null ? null : json["contact_email"],
         eventSite: json["event_site"] == null ? null : json["event_site"],
-        team: json["team"] == null
+        team: json["team"] == null ? null : json["team"],
+        claim: json["claim"] == null
             ? null
-            : List<dynamic>.from(json["team"].map((x) => x)),
+            : List<int>.from(json["claim"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,10 +71,15 @@ class Event {
             ? null
             : "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
         "time": time == null ? null : time,
+        "date_end": dateEnd == null
+            ? null
+            : "${dateEnd.year.toString().padLeft(4, '0')}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}",
+        "time_end": timeEnd == null ? null : timeEnd,
         "full_desc": fullDesc == null ? null : fullDesc,
         "address": address == null ? null : address,
         "contact_email": contactEmail == null ? null : contactEmail,
         "event_site": eventSite == null ? null : eventSite,
-        "team": team == null ? null : List<dynamic>.from(team.map((x) => x)),
+        "team": team == null ? null : team,
+        "claim": claim == null ? null : List<dynamic>.from(claim.map((x) => x)),
       };
 }

@@ -40,7 +40,7 @@ class UndergroundTextField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged onChanged;
   final bool isPhone;
-  final bool isPassword;
+  final bool obscureText;
 
   UndergroundTextField({
     this.text = "",
@@ -50,7 +50,7 @@ class UndergroundTextField extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.isPhone = false,
-    this.isPassword = false,
+    this.obscureText = false,
   });
 
   @override
@@ -64,7 +64,7 @@ class UndergroundTextField extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width - 100,
-                child: TextField(
+                child: TextFormField(
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 16.0,
@@ -90,6 +90,7 @@ class UndergroundTextField extends StatelessWidget {
                     ),
                     labelText: hintText,
                   ),
+                  obscureText: obscureText,
                   controller: controller,
                 ),
               )

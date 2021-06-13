@@ -61,7 +61,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                         controller: password,
                         icon: "password",
                         hintText: "Пароль",
-                        isPassword: true),
+                        obscureText: true),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     UndergroundButton(
                         text: "Войти",

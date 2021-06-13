@@ -140,7 +140,7 @@ class Http {
   }
 
   Future<Project> getCurrentProject(int index) async {
-    //await refreshToken();
+    index += 1;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token_access');
     final username = preferences.getString('username');
@@ -234,6 +234,7 @@ class Http {
     );
     var events;
     if (response.statusCode < 300) {
+      print(response.body);
       events = eventFromJson(response.body);
       log('getCurrentEvents pass');
       return events;

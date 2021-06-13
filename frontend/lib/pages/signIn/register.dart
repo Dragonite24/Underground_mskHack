@@ -93,7 +93,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         controller: password,
                         icon: "password",
                         hintText: "Пароль",
-                        isPassword: true),
+                        obscureText: true),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     UndergroundButton(
                         text: "Продолжить",
@@ -122,7 +122,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                   },
                                 );
                               } else {
-                                Snackbar.show(context, '');
+                                Snackbar.show(context,
+                                    'Ошибка ввода. Попробуйте ещё раз');
                               }
                             });
                           }
