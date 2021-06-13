@@ -7,6 +7,8 @@ import '../../../const.dart';
 import '../../../http.dart';
 import '../../../widgets.dart';
 
+import 'package:add_2_calendar/add_2_calendar.dart' as cal;
+
 class EventCard extends StatefulWidget {
   int index;
   EventCard(this.index);
@@ -66,8 +68,29 @@ class _EventCardState extends State<EventCard> {
                     child: FloatingActionButton(
                       backgroundColor: Colors.white,
                       onPressed: () {
-                        // TODO Calendar
-                        print("calendar");
+                        var time1 = this.event.time.split(":");
+                        var time2 = this.event.timeEnd.split(":");
+                        final cal.Event event = cal.Event(
+                          title: this.event.name,
+                          description: this.event.fullDesc,
+                          location: this.event.address,
+                          startDate: DateTime(
+                            this.event.date.year,
+                            this.event.date.month,
+                            this.event.date.day,
+                            int.parse(time1[0]),
+                            int.parse(time1[1]),
+                          ),
+                          endDate: DateTime(
+                            this.event.dateEnd.year,
+                            this.event.dateEnd.month,
+                            this.event.dateEnd.day,
+                            int.parse(time2[0]),
+                            int.parse(time2[1]),
+                          ),
+                        );
+
+                        cal.Add2Calendar.addEvent2Cal(event);
                       },
                       child: Icon(
                         Icons.calendar_today,
@@ -84,6 +107,7 @@ class _EventCardState extends State<EventCard> {
                     onPressed: () {
                       // TODO Notification
                       print("notification");
+                      
                     },
                     child: Container(
                       height: 60,
