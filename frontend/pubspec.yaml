@@ -41,6 +41,7 @@ flutter:
     - images/text_field/
     - images/icon/
     - images/backgrounds/
+    - images/profile/
 
   uses-material-design: true
 
