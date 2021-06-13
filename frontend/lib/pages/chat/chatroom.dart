@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class ChatRoom extends StatefulWidget {
   ChatRoom(this.userName, this.userinfor, this.userIntro);
 
-  String userThumbnail;
-  String userName;
-  String userinfor;
-  String userIntro;
+  final String userThumbnail = "";
+  final String userName;
+  final String userinfor;
+  final String userIntro;
 
   @override
   State<StatefulWidget> createState() => _ChatRoom();

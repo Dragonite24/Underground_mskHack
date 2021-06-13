@@ -110,15 +110,21 @@ class UndergroundNavbarState extends State<UndergroundNavbar> {
                 return currentPage;
               })));
 
-  BottomNavigationBarItem navbarItem(String name, image, int index) =>
-      BottomNavigationBarItem(
-          icon: SvgPicture.asset(_currentIndex == index
-              ? "images/navBar/${image}_active.svg"
-              : "images/navBar/${image}_inactive.svg"),
-          title: Text(name,
-              style: TextStyle(
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                  color: _currentIndex == index ? Color(0xFF333333) : null)));
+  BottomNavigationBarItem navbarItem(String name, image, int index) {
+    return BottomNavigationBarItem(
+      icon: SvgPicture.asset(_currentIndex == index
+          ? "images/navBar/${image}_active.svg"
+          : "images/navBar/${image}_inactive.svg"),
+      title: Text(
+        name,
+        style: TextStyle(
+          fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.w600,
+          fontSize: 12,
+          color: _currentIndex == index ? Color(0xFF333333) : null,
+        ),
+      ),
+
+    );
+  }
 }

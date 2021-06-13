@@ -54,7 +54,9 @@ class _VerifyCodeInputState extends State<VerifyCodeInput> {
             child: TextField(
               style: TextStyle(color: Colors.transparent, fontSize: 0),
               // only digits
-              inputFormatters: [WhitelistingTextInputFormatter(RegExp(r"[0-9]"))],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
+              ],
               keyboardType: TextInputType.number,
               focusNode: _focusNode,
               controller: _controller,
@@ -72,7 +74,6 @@ class _VerifyCodeInputState extends State<VerifyCodeInput> {
                   _focusNode.unfocus();
                   _temp++;
                   if (_temp == 1) {
-
                     if (widget.onComplete != null) {
                       widget.onComplete(_inputCode);
                     }

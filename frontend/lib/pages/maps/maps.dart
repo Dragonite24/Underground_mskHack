@@ -17,6 +17,7 @@ class _MapsViewState extends State<MapsView> {
 
   @override
   void initState() {
+    super.initState();
     BitmapDescriptor.fromAssetImage(
       ImageConfiguration(
         size: Size(49, 68),

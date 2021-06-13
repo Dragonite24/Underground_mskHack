@@ -18,7 +18,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  int _currentIndex = 0;
+  //int _currentIndex = 0;
   int _widgetIndex = 0;
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'navBar.dart';
 import 'pages/signIn/login.dart';
@@ -59,15 +58,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     setState(() {});
   }
 
-  Tab _tabItem(IconData iconData, int index, Color selectedColor) {
-    return Tab(
-      icon: FaIcon(
-        iconData,
-        size: 26,
-        color: _tabController.index == index ? selectedColor : Colors.grey,
-      ),
-    );
-  }
+  // Tab _tabItem(IconData iconData, int index, Color selectedColor) {
+  //   return Tab(
+  //     icon: FaIcon(
+  //       iconData,
+  //       size: 26,
+  //       color: _tabController.index == index ? selectedColor : Colors.grey,
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -184,19 +184,31 @@ class _SearchMain extends State<Cards>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlatButton(
+                TextButton(
                   onPressed: () => cardController.triggerLeft(),
-                  padding: EdgeInsets.all(0.0),
                   child: Image.asset('images/discard_card.png'),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(0.0),
+                    ),
+                  ),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () => cardController.triggerUp(),
-                  padding: EdgeInsets.all(0.0),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(0.0),
+                    ),
+                  ),
                   child: Image.asset('images/like_card.png'),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () => cardController.triggerRight(),
-                  padding: EdgeInsets.all(0.0),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(0.0),
+                    ),
+                  ),
                   child: Image.asset('images/add_card.png'),
                 ),
               ],
@@ -219,12 +231,14 @@ class _SearchMain extends State<Cards>
                 color: Colors.black,
               ),
             ),
-            Text('Карточки',
-                style: TextStyle(
-                  fontStyle: FontStyle.normal,
-                  fontSize: 24,
-                  color: Color(0xFF333333),
-                ).copyWith(fontFamily: Fonts().regular)),
+            Text(
+              'Карточки',
+              style: TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 24,
+                color: Color(0xFF333333),
+              ).copyWith(fontFamily: Fonts().regular),
+            ),
             IconButton(
               onPressed: null,
               icon: Icon(Icons.favorite, color: Colors.black),

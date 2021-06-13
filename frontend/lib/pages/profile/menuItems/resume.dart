@@ -10,12 +10,12 @@ class Resume extends StatefulWidget {
 }
 
 class _ResumeState extends State<Resume> {
-  final style_light = TextStyle(
+  final styleLight = TextStyle(
     fontSize: 18,
     color: Color(0xFF333333),
   ).copyWith(fontFamily: Fonts().light);
 
-  final style_medium = TextStyle(
+  final styleMedium = TextStyle(
     fontSize: 18,
     color: Color(0xFF333333),
   ).copyWith(fontFamily: Fonts().medium);
@@ -30,38 +30,38 @@ class _ResumeState extends State<Resume> {
             children: [
               Text(
                 'Опыт работы',
-                style: style_medium,
+                style: styleMedium,
               ),
               Text(
                 'Ваш опыт работы',
-                style: style_light,
+                style: styleLight,
               ),
               SizedBox(height: 20),
               Text(
                 'Образование',
-                style: style_medium,
+                style: styleMedium,
               ),
               Text(
                 'Ваше образование',
-                style: style_light,
+                style: styleLight,
               ),
               SizedBox(height: 20),
               Text(
                 'Soft Skills',
-                style: style_medium,
+                style: styleMedium,
               ),
               Text(
                 'Опыт работы',
-                style: style_light,
+                style: styleLight,
               ),
               SizedBox(height: 20),
               Text(
                 'Hard Skills',
-                style: style_medium,
+                style: styleMedium,
               ),
               Text(
                 'Опыт работы',
-                style: style_light,
+                style: styleLight,
               ),
             ],
           ),
