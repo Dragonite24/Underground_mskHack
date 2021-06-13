@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
    <application
-        android:label="frontend"
+        android:label="МИК"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBknG3DMbic2PfR_Bh9glADNl6V2mz_UoM"/>
 
