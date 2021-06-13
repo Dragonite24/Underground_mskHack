@@ -122,7 +122,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                   },
                                 );
                               } else {
-                                Snackbar.show(context);
+                                Snackbar.show(context, '');
                               }
                             });
                           }

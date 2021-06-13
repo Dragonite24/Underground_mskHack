@@ -78,7 +78,8 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                         builder: (BuildContext context) =>
                                             MyHomePage()));
                               } else
-                                Snackbar.show(context);
+                                Snackbar.show(context,
+                                    'Не удалось залогиниться. Попробуйте ещё раз');
                             });
                           }
                         }),
