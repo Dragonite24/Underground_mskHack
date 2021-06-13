@@ -35,71 +35,75 @@ class _MyProjectsState extends State<MyProjects> {
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Indicator.circle,
           );
         }
       },
     );
   }
 
-  Widget projectCard(index) => GestureDetector(
-        onTap: () => Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) => ProjectCard())),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 211,
-              width: double.infinity,
-              child: Container(
-                child: Image.asset(
-                  "images/backgrounds/buisness.jpg",
-                  fit: BoxFit.cover,
+  Widget projectCard(index) => ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        child: GestureDetector(
+          onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => ProjectCard(index))),
+          child: Column(
+            children: [
+              Container(
+                height: 211,
+                width: double.infinity,
+                child: Container(
+                  child: Image.asset(
+                    "images/backgrounds/buisness.jpg",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              color: Colors.white,
-              height: 121,
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      left: 16,
-                      right: 16,
-                    ),
-                    child: Text(
-                      projects[index].name,
-                      style: TextStyle(
-                        fontFamily: Fonts().medium,
-                        fontSize: 16,
+              Container(
+                color: Colors.white,
+                height: 121,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Text(
+                        projects[index].name,
+                        style: TextStyle(
+                          fontFamily: Fonts().medium,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      bottom: 12,
-                      top: 6,
-                    ),
-                    child: Text(
-                      projects[index].team.desc.toString(),
-                      style: TextStyle(
-                        fontFamily: Fonts().regular,
-                        fontSize: 14,
-                        color: black.withOpacity(0.8),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        bottom: 12,
+                        top: 6,
+                      ),
+                      child: Text(
+                        projects[index].team.desc.toString(),
+                        style: TextStyle(
+                          fontFamily: Fonts().regular,
+                          fontSize: 14,
+                          color: black.withOpacity(0.8),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 15)
+                  ],
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       );
 }

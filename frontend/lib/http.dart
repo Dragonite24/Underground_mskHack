@@ -7,7 +7,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/afterReg.dart';
+import 'models/event.dart';
+import 'models/project.dart';
 import 'models/projects.dart';
+import 'models/teams.dart';
 
 class Http {
   final String url = "hollapuppy.pythonanywhere.com"; // api url
@@ -46,9 +49,8 @@ class Http {
     );
     GetToken token;
     if (response.statusCode < 300) {
-      log('getToken STATUS CODE: ' + response.statusCode.toString());
       token = getTokenFromJson(response.body);
-
+      log(token.access);
       preferences.setString('username', username);
       preferences.setString('password', password);
       preferences.setString('token_access', token.access);
@@ -76,7 +78,6 @@ class Http {
     );
     dynamic new_token;
     if (response.statusCode < 300) {
-      log('refreshToken STATUS CODE: ' + response.statusCode.toString());
       new_token = jsonDecode(response.body);
       preferences.setString('token_acces', new_token.access);
       return new_token.access;
@@ -138,14 +139,14 @@ class Http {
     }
   }
 
-  Future<Projects> getCurrentProject() async {
+  Future<Project> getCurrentProject(int index) async {
     //await refreshToken();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token_access');
     final username = preferences.getString('username');
     final password = preferences.getString('password');
     final response = await http.get(
-      Uri.http(url, "/api/project/all"),
+      Uri.http(url, "/api/project/$index"),
       headers: {
         "Authorization": "Bearer $token",
         "username": username,
@@ -154,17 +155,45 @@ class Http {
     );
     var proj;
     if (response.statusCode < 300) {
+      proj = projectItemFromJson(response.body);
       print(response.body);
-      log('getmyProjects pass');
+      log('getCurrentProject pass');
       return proj;
     } else {
-      log('getmyProjects STATUS CODE: ' + response.statusCode.toString());
+      log('getCurrentProject STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
-      throw ('getmyProjects STATUS CODE: ' + response.statusCode.toString());
+      throw ('getCurrentProject STATUS CODE: ' +
+          response.statusCode.toString());
     }
   }
 
-  Future<List<EventsList>> getEvents() async {
+  Future<List<Teams>> getAllTeams() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token_access');
+    final username = preferences.getString('username');
+    final password = preferences.getString('password');
+    final response = await http.get(
+      Uri.http(url, "/api/team/all"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "username": username,
+        "password": password
+      },
+    );
+    var teams;
+    if (response.statusCode < 300) {
+      teams = teamsFromJson(response.body);
+      print(response.body);
+      log('getAllTeams pass');
+      return teams;
+    } else {
+      log('getAllTeams STATUS CODE: ' + response.statusCode.toString());
+      log(response.body);
+      throw ('getAllTeams STATUS CODE: ' + response.statusCode.toString());
+    }
+  }
+
+  Future<List<EventsList>> getListEvents() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token_access');
     final username = preferences.getString('username');
@@ -179,13 +208,39 @@ class Http {
     );
     var events;
     if (response.statusCode < 300) {
-      events = eventFromJson(response.body);
-      log('getmyProjects pass');
+      events = eventsFromJson(response.body);
+      log('getListEvents pass');
       return events;
     } else {
-      log('getmyProjects STATUS CODE: ' + response.statusCode.toString());
+      log('getListEvents STATUS CODE: ' + response.statusCode.toString());
       log(response.body);
-      throw ('getmyProjects STATUS CODE: ' + response.statusCode.toString());
+      throw ('getListEvents STATUS CODE: ' + response.statusCode.toString());
+    }
+  }
+
+  Future<Event> getCurrentEvents(int index) async {
+    index += 1;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token_access');
+    final username = preferences.getString('username');
+    final password = preferences.getString('password');
+    final response = await http.get(
+      Uri.http(url, "/api/event/$index"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "username": username,
+        "password": password
+      },
+    );
+    var events;
+    if (response.statusCode < 300) {
+      events = eventFromJson(response.body);
+      log('getCurrentEvents pass');
+      return events;
+    } else {
+      log('getCurrentEvents STATUS CODE: ' + response.statusCode.toString());
+      log(response.body);
+      throw ('getCurrentEvents STATUS CODE: ' + response.statusCode.toString());
     }
   }
 
