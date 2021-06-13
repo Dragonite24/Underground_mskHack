@@ -172,3 +172,23 @@ class UndergroundOutlinedButton {
     borderRadius: BorderRadius.circular(32),
   );
 }
+
+class UndergroundNoConnection extends StatelessWidget {
+  const UndergroundNoConnection({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.signal_wifi_connected_no_internet_4_outlined),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Нет сети"),
+          ),
+        ],
+      ),
+    );
+  }
+}
