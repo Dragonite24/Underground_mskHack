@@ -1,8 +1,6 @@
 # МИК
 
-<p align="center">
-  <img src="./img/logo_imoscow.png">
-</p>
+<img src="./img/logo_imoscow.png">
 
 Кроссплатформенное мобильное приложение Московского инновационного кластера.
 
