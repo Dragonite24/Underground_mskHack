@@ -1,4 +1,3 @@
-import 'package:team_up/commons/constData.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoom extends StatefulWidget {

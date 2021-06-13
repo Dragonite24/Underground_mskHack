@@ -1,8 +1,6 @@
 import 'package:team_up/commons/constData.dart';
 import 'package:team_up/commons/userProfileCommon.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';

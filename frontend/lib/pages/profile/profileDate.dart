@@ -1,8 +1,6 @@
-import 'package:team_up/code_input/src/verify_code_input_widget.dart';
 import 'package:team_up/const.dart';
 import 'package:team_up/pages/profile/menuItems/points.dart';
 import 'package:team_up/pages/profile/menuItems/projects.dart';
-import 'package:team_up/pages/signIn/success.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets.dart';

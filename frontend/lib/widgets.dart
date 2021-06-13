@@ -1,6 +1,5 @@
 import 'package:team_up/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 const Color green = Color(0xFF16FF00);
 const Color blue = Color(0xFF4CFFC9);

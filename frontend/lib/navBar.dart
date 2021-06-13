@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'main.dart';
 import 'pages/cards/searchmain.dart';
 import 'pages/profile/profileDate.dart';
-import 'pages/projects/projects.dart';
 
 final GlobalKey<UndergroundNavbarState> navbarKey =
     GlobalKey<UndergroundNavbarState>();
