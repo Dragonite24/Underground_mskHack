@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:team_up/main.dart';
 import 'package:team_up/models/event.dart';
 
 import '../../../const.dart';
@@ -8,6 +10,8 @@ import '../../../http.dart';
 import '../../../widgets.dart';
 
 import 'package:add_2_calendar/add_2_calendar.dart' as cal;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class EventCard extends StatefulWidget {
   int index;
@@ -25,6 +29,7 @@ class _EventCardState extends State<EventCard> {
     super.initState();
   }
 
+  bool pushed = false;
   Event event;
   @override
   Widget build(BuildContext context) {
@@ -105,9 +110,40 @@ class _EventCardState extends State<EventCard> {
                   right: 15,
                   child: FloatingActionButton(
                     onPressed: () {
-                      // TODO Notification
-                      print("notification");
-                      
+                      if (!pushed) {
+                        var time1 = this.event.time.split(":");
+                        var dt = DateTime(
+                          this.event.date.year,
+                          this.event.date.month,
+                          this.event.date.day,
+                          int.parse(time1[0]),
+                          int.parse(time1[1]),
+                        );
+                        // showNotification();
+                        tz.initializeTimeZones();
+                        flutterLocalNotificationsPlugin.zonedSchedule(
+                          0,
+                          this.event.name,
+                          "${time1[0]}:${time1[1]} - ${this.event.address}",
+                          tz.TZDateTime.from(dt, tz.local).subtract(
+                            const Duration(minutes: 5),
+                          ),
+                          const NotificationDetails(
+                            android: AndroidNotificationDetails(
+                              'default',
+                              'default',
+                              'default',
+                            ),
+                          ),
+                          androidAllowWhileIdle: true,
+                          uiLocalNotificationDateInterpretation:
+                              UILocalNotificationDateInterpretation
+                                  .absoluteTime,
+                        );
+                        setState(() {
+                          pushed = true;
+                        });
+                      }
                     },
                     child: Container(
                       height: 60,
@@ -122,7 +158,9 @@ class _EventCardState extends State<EventCard> {
                         ),
                       ),
                       child: Icon(
-                        Icons.notifications_active_outlined,
+                        this.pushed
+                            ? Icons.notifications_active
+                            : Icons.notifications_outlined,
                         size: 27,
                         color: black,
                       ),

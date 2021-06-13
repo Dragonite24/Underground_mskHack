@@ -13,6 +13,25 @@ const AndroidInitializationSettings initializationSettingsAndroid =
 final InitializationSettings initializationSettings =
     InitializationSettings(android: initializationSettingsAndroid);
 
+Future<void> showNotification() async {
+  await flutterLocalNotificationsPlugin.show(
+    0,
+    'plain title',
+    'plain body',
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'default',
+        'default',
+        'default',
+        importance: Importance.max,
+        priority: Priority.high,
+        showWhen: false,
+      ),
+    ),
+    payload: 'item x',
+  );
+}
+
 void main() => runApp(MyApp());
 
 // GlobalKey<NavigatorState> currentNavigatorKey(index) {
