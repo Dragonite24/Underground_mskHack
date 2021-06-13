@@ -1,6 +1,6 @@
 import 'package:team_up/pages/projects/events.dart';
 import 'package:team_up/pages/projects/peoples.dart';
-import 'package:team_up/pages/projects/projects.dart';
+import 'package:team_up/pages/projects/project/projects.dart';
 import 'package:team_up/pages/projects/teams.dart';
 import 'package:team_up/widgets.dart';
 import 'package:flutter/material.dart';

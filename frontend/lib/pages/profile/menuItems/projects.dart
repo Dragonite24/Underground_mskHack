@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../const.dart';
 
-class Project extends StatefulWidget {
-  const Project({Key key}) : super(key: key);
+class ProjectItem extends StatefulWidget {
+  const ProjectItem({Key key}) : super(key: key);
 
   @override
-  _ProjectState createState() => _ProjectState();
+  _ProjectItemState createState() => _ProjectItemState();
 }
 
-class _ProjectState extends State<Project> {
+class _ProjectItemState extends State<ProjectItem> {
   @override
   Widget build(BuildContext context) {
     return Container(

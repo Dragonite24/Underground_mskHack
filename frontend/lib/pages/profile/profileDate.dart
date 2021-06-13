@@ -109,7 +109,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             index: _widgetIndex,
                             children: [
                               Resume(),
-                              Project(),
+                              ProjectItem(),
                               Teams(),
                               Points(),
                             ],
