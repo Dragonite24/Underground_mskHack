@@ -306,8 +306,12 @@ class _SearchMain extends State<Cards>
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage:
-                        AssetImage("images/profile/underground.jpg"),
+                    backgroundImage: AssetImage([
+                      "images/profile/underground.jpg",
+                      "images/profile/brand1.jpg",
+                      "images/profile/brand2.jpg",
+                      "images/profile/brand3.png",
+                    ][index]),
                   ),
                   SizedBox(width: 10),
                   Container(
@@ -419,7 +423,12 @@ class _SearchMain extends State<Cards>
                         child: Column(
                           children: <Widget>[
                             Text(
-                              "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
+                              [
+                                "№1 место в конкурсе Moscow City Hack",
+                                "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
+                                "У нас всё ещё впереди.",
+                                "Мы славимся умением доставать из рта лампочку.",
+                              ][index],
                               style: TextStyle().copyWith(
                                 fontFamily: Fonts().regular,
                               ),
@@ -449,16 +458,30 @@ class _SearchMain extends State<Cards>
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: <Widget>[
-                        projectList(0),
-                        SizedBox(width: 5),
-                        projectList(1),
-                        SizedBox(width: 5),
-                        projectList(2),
-                        SizedBox(width: 5),
-                        // SizedBox(width: 5),
-                        projectList(3),
-                      ],
+                      children: [
+                        <Widget>[
+                          projectList(0),
+                          SizedBox(width: 5),
+                          projectList(1),
+                          SizedBox(width: 5),
+                          projectList(2),
+                          SizedBox(width: 5),
+                          projectList(3),
+                        ],
+                        <Widget>[
+                          projectList(3),
+                          SizedBox(width: 5),
+                          projectList(0),
+                        ],
+                        <Widget>[
+                          projectList(2),
+                          SizedBox(width: 5),
+                          projectList(1),
+                        ],
+                        <Widget>[
+                          projectList(3),
+                        ],
+                      ][index],
                     ),
                   ),
                 ),
@@ -500,7 +523,12 @@ class _SearchMain extends State<Cards>
             children: [
               Container(
                 child: Image.asset(
-                  "images/backgrounds/buisness.jpg",
+                  [
+                    "images/backgrounds/buisness.jpg",
+                    "images/backgrounds/buisness2.jpg",
+                    "images/backgrounds/buisness3.jpg",
+                    "images/backgrounds/buisness4.jpg",
+                  ][index],
                   fit: BoxFit.cover,
                 ),
                 height: 70,
