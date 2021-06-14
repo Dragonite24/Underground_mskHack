@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import datetime
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+# AUTH_USER_MODEL = 'freelance.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,15 +43,6 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
 ]
-
-
-JWT_AUTH = {
-    'JWT_VERIFY_EXPIRATION': False,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=30000),
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
-}
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,10 +130,6 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
 

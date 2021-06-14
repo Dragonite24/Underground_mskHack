@@ -18,27 +18,27 @@ class CreateIndiVidSerializer(serializers.ModelSerializer):
 class EducationSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Education
+        model = Event
         fields = '__all__'
 
 
 class PositionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Position
+        model = Event
         fields = '__all__'
 
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Team
+        model = Event
         fields = '__all__'
 
 
 class IndividSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     education = EducationSerializer()
-    position = PositionSerializer()
-    team = TeamSerializer()
+    position = PositionSerializer();
+    team = TeamSerializer();
 
     class Meta:
         model = Individ
@@ -52,17 +52,11 @@ class CreateEventSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
+    team = TeamSerializer();
 
     class Meta:
         model = Event
         fields = '__all__'
-
-
-class ListEventSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Event
-        fields = ['poster', 'name', 'short_desc', 'type', 'date', 'time', 'address',]
 
 
 class CreateEducationSerializer(serializers.ModelSerializer):
@@ -84,9 +78,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    about = AboutSerializer()
-    team = TeamSerializer()
-    product = ProductSerializer()
+    about = AboutSerializer();
+    team = TeamSerializer();
+    product = ProductSerializer();
 
     class Meta:
         model = Project
@@ -105,16 +99,5 @@ class LoungeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProjectLeaderSerializer(serializers.ModelSerializer):
-    team = TeamSerializer();
 
-    class Meta:
-        model = ProjectLeader
-        fields = '__all__'
-
-
-class CreateProjectLeaderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = '__all__'
 

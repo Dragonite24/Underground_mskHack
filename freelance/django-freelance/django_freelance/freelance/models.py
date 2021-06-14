@@ -6,61 +6,51 @@ from django.contrib.auth.models import User
 class Individ(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     FIO = models.CharField(max_length=100)
-    photo = models.ImageField(blank=True)
-    SNILS = models.CharField(max_length=11, blank=True)
-    about = models.CharField(max_length=500, blank=True)
-    mobile = models.CharField(max_length=11, blank=True)
-    social = models.CharField(max_length=500, blank=True)
+    photo = models.ImageField()
+    SNILS = models.CharField(max_length=11)
+    about = models.CharField(max_length=500)
+    mobile = models.CharField(max_length=11)
+    social = models.CharField(max_length=500)
     email = models.EmailField()
-    comp = models.CharField(max_length=500, blank=True)
-    education = models.OneToOneField('Education', on_delete=models.CASCADE, blank=True)
-    position = models.OneToOneField('Position', on_delete=models.CASCADE, blank=True)
-    team = models.OneToOneField('Team', on_delete=models.CASCADE, blank=True)
-
-
-# лидер
-class ProjectLeader(models.Model):
-    individ = models.OneToOneField('Individ', on_delete=models.CASCADE, default='1')
-    FIO = models.CharField(max_length=100)
-    mobile = models.CharField(max_length=11, blank=True)
-    email = models.EmailField(blank=True)
+    is_capitan = models.BooleanField(default=0)
+    compititions = models.CharField(max_length=500)
+    education = models.OneToOneField('Education', on_delete=models.CASCADE, default='1')
+    position = models.OneToOneField('Position', on_delete=models.CASCADE, default='1')
     team = models.OneToOneField('Team', on_delete=models.CASCADE, default='1')
 
 
 # мероприятия
 class Event(models.Model):
     EVENT_TYPE = [
-        ('1', 'Exhibition'),
-        ('2', 'Forum'),
-        ('3', 'Session'),
-        ('4', 'Round table'),
-        ('5', 'Webinar'),
-        ('6', 'Demo day'),
-        ('7', 'Lecture'),
-        ('8', 'On-line lecture'),
-        ('9', 'Strategic session'),
+        ('1', 'Выставка'),
+        ('2', 'Форум'),
+        ('3', 'Сессия'),
+        ('4', 'Круглый стол'),
+        ('5', 'Вебинар'),
+        ('6', 'Демо-день'),
+        ('7', 'Лекция'),
+        ('8', 'On-line лекция'),
+        ('9', 'Стратегическая сессия'),
     ]
-    poster = models.ImageField(blank=True)
+    poster = models.ImageField()
     name = models.CharField(max_length=75)
     short_desc = models.CharField(max_length=160)
     type = models.CharField(choices=EVENT_TYPE, default='1', max_length=1)
     date = models.DateField()
     time = models.TimeField()
-    date_end = models.DateField(blank=True)
-    time_end = models.TimeField(blank=True)
-    full_desc = models.CharField(max_length=850, blank=True)
-    address = models.CharField(max_length=160)
-    contact_email = models.EmailField(blank=True)
-    event_site = models.CharField(max_length=80, blank=True)
-    team = models.ManyToManyField('Team', default=1, blank=True)
+    full_desc = models.CharField(max_length=850)
+    adress = models.CharField(max_length=160)
+    contact_email = models.EmailField()
+    event_site = models.CharField(max_length=80)
+    team = models.OneToOneField('Team', on_delete=models.CASCADE, default='1')
 
 
 # Образование
 class Education(models.Model):
     EDUCATION_DEGREE = [
-        ('1', 'Undergraduate'),
-        ('2', 'Masters degree'),
-        ('3', 'Specialty'),
+        ('1', 'Бакалавриат'),
+        ('2', 'Магистратура'),
+        ('3', 'Специалитет'),
     ]
     institution = models.CharField(max_length=100)
     specialization = models.CharField(max_length=30)
@@ -80,52 +70,50 @@ class Position(models.Model):
 class Project(models.Model):
     PROJECT_BRANCH = [
         ('1', 'Космос'),
-        ('2', 'Aviation'),
-        ('3', 'Agriculture'),
-        ('4', 'Biotech'),
-        ('5', 'Yadertech'),
-        ('6', 'Building'),
-        ('7', 'Fashion'),
-        ('8', 'Energy'),
-        ('9', 'Finance'),
-        ('10', 'Food'),
-        ('11', 'Games'),
-        ('12', 'Medicine'),
-        ('13', 'Jurisprudence'),
-        ('14', 'Shipping'),
-        ('15', 'Nanotechnology'),
-        ('16', 'Oil and gas'),
-        ('17', 'Trade'),
-        ('18', 'Safety'),
+        ('2', 'Авиация'),
+        ('3', 'Сельское хозяйства'),
+        ('4', 'Биотех'),
+        ('5', 'Ядертех'),
+        ('6', 'Строительство'),
+        ('7', 'Мода'),
+        ('8', 'Энергетика'),
+        ('9', 'Финансы'),
+        ('10', 'Питание'),
+        ('11', 'Игры'),
+        ('12', 'Медицина'),
+        ('13', 'Юриспруденция'),
+        ('14', 'Судоходство'),
+        ('15', 'Нанотехнологии'),
+        ('16', 'Нефть и газ'),
+        ('17', 'Торговля'),
+        ('18', 'Безопасность'),
         ('19', 'IT'),
-        ('20', 'Education'),
-        ('21', 'Ecology'),
-        ('22', 'Lifestyle'),
-        ('23', 'Mechanical engineering'),
-        ('24', 'Microelectronics'),
-        ('25', 'Other'),
+        ('20', 'Образование'),
+        ('21', 'Экология'),
+        ('22', 'Образ жизни'),
+        ('23', 'Машиностроение'),
+        ('24', 'Микроэлектроника'),
+        ('25', 'Другое'),
     ]
     branch = models.CharField(choices=PROJECT_BRANCH, default='1', max_length=2)
     name = models.CharField(max_length=200)
-    poster = models.ImageField(blank=True)
+    poster = models.ImageField()
     about = models.OneToOneField('About', on_delete=models.CASCADE, default='1')
     team = models.OneToOneField('Team', on_delete=models.CASCADE, default='1')
     product = models.OneToOneField('Product', on_delete=models.CASCADE, default='1')
 
 
 class Team(models.Model):
-    comp = models.CharField(max_length=500, default='none')
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=500)
-    poster = models.ImageField(blank=True)
 
 
 class Product(models.Model):
     PRODUCT_STAGE = [
-        ('1', 'Idea'),
-        ('2', 'Demo sample'),
-        ('3', 'Product'),
-        ('4', 'Scaling'),
+        ('1', 'Идея'),
+        ('2', 'Демонстрационный образец'),
+        ('3', 'Продукт'),
+        ('4', 'Масштабирование'),
     ]
     desc = models.CharField(max_length=500)
     advantage = models.CharField(max_length=500)

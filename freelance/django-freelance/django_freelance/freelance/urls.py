@@ -8,10 +8,10 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('individual/<int:pk>', IndividRetrieveView.as_view()),
-    path('individual/update/<int:pk>', IndividUpdateView.as_view()),
-    path('individual/all', IndividListView.as_view()),
-    path('individual/new', IndividCreateView.as_view()),
+    path('individ/<int:pk>', IndividRetrieveView.as_view()),
+    path('individ/update/<int:pk>', IndividUpdateView.as_view()),
+    path('individ/all', IndividListView.as_view()),
+    path('individ/new', IndividCreateView.as_view()),
 
     path('event/<int:pk>', EventRetrieveView.as_view()),
     path('event/update/<int:pk>', EventUpdateView.as_view()),
@@ -52,11 +52,4 @@ urlpatterns = [
     path('lounge/update/<int:pk>', LoungeUpdateView.as_view()),
     path('lounge/all', LoungeListView.as_view()),
     path('lounge/new', LoungeCreateView.as_view()),
-
-    path('leaderproject/<int:pk>', ProjectLeaderRetrieveView.as_view()),
-    path('leaderproject/update/<int:pk>', ProjectLeaderUpdateView.as_view()),
-    path('leaderproject/all', ProjectLeaderListView.as_view()),
-    path('leaderproject/new', ProjectLeaderCreateView.as_view()),
-
-    # path('recomms/<int:user>', recommend_team, name="recommend_team")
 ]
