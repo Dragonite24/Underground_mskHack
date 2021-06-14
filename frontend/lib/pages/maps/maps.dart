@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:team_up/pages/ar/prear.dart';
 import 'package:team_up/pages/profile/menuItems/createEvent.dart';
 
 class MapsView extends StatefulWidget {
@@ -78,6 +79,41 @@ class _MapsViewState extends State<MapsView> {
     );
   }
 
+  Widget _buildWButton(String text, onClick) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onClick,
+        child: Ink(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+          ),
+          child: Container(
+            constraints: const BoxConstraints(
+              minWidth: 150.0,
+              minHeight: 40.0,
+            ), // min sizes for Material buttons
+            alignment: Alignment.center,
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0.0)),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -101,6 +137,19 @@ class _MapsViewState extends State<MapsView> {
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildWButton("Стартап", () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(builder: (context) => PreArView()),
+                  );
+                }),
+                _buildWButton("Мои события", () {}),
+              ],
+            ),
+            Expanded(child: Container()),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
