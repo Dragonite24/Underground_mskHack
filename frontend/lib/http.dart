@@ -53,6 +53,7 @@ class Http {
       log(token.access);
       preferences.setString('username', username);
       preferences.setString('password', password);
+      preferences.setString('password', password);
       preferences.setString('token_access', token.access);
       preferences.setString('token_refresh', token.refresh);
       return token;
@@ -246,35 +247,30 @@ class Http {
     }
   }
 
-  static Future<EventsList> getEvent(int eventId) async {
-    switch (eventId) {
-      case 1:
-        return EventsList(
-          name: "Регулярная игра в Межвузовском клубе интеллектуальных игр",
-          shortDesc: "Томск, Точка кипения ТУСУР Томск",
-          date: new DateTime(2021, 06, 13, 14, 30),
-          address: "Томск, ул Красноармейская, д. 147",
-        );
-        break;
-      case 2:
-        return EventsList(
-          name: "Английский с нуля",
-          shortDesc: "Калуга, Точка кипения - Калуга",
-          date: new DateTime(2021, 06, 13, 15, 00),
-          address: "Калуга, ул Октябрьская, д. 17А",
-        );
-        break;
-      case 3:
-        return EventsList(
-          name: "Мастер-класс по голосо-речевой практике",
-          shortDesc: "Хабаровск, Точка кипения - Хабаровск",
-          date: new DateTime(2021, 06, 13, 15, 00),
-          address: "Хабаровск, ул Муравьева-Амурского, д. 33",
-        );
-        break;
-      default:
-        throw Exception("Ivalid event id");
-        break;
+  Future<Event> joinEvent(int index) async {
+    index += 1;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token_access');
+    final username = preferences.getString('username');
+    final password = preferences.getString('password');
+    final response = await http.get(
+      Uri.http(url, "/api/claim/all"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "username": username,
+        "password": password
+      },
+    );
+    var events;
+    if (response.statusCode < 300) {
+      print(response.body);
+      events = eventFromJson(response.body);
+      log('getCurrentEvents pass');
+      return events;
+    } else {
+      log('getCurrentEvents STATUS CODE: ' + response.statusCode.toString());
+      log(response.body);
+      throw ('getCurrentEvents STATUS CODE: ' + response.statusCode.toString());
     }
   }
 }

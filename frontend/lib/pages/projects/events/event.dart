@@ -314,9 +314,17 @@ class _EventCardState extends State<EventCard> {
                     ),
                     SizedBox(height: 20),
                     GestureDetector(
-                      onTap: () {
-                        // TODO: Подать заявку
-                        print("Wew");
+                      onTap: () async {
+                        Http().joinEvent(index).then((value) => null);
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (BuildContext context) {
+                        //       return Center(
+                        //         child: CircularProgressIndicator(),
+                        //       );
+                        //     });
+                        // await loginAction();
+                        // Navigator.pop(context);
                       },
                       child: Center(
                         child: Container(
@@ -380,5 +388,11 @@ class _EventCardState extends State<EventCard> {
         ],
       ),
     );
+  }
+
+  Future<bool> loginAction() async {
+    //replace the below line of code with your login request
+    await new Future.delayed(const Duration(seconds: 2));
+    return true;
   }
 }

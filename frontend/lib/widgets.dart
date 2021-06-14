@@ -8,6 +8,8 @@ const Color black = Color(0xFF333333);
 class UndergroundScaffold extends StatelessWidget {
   final Widget appBar, body, backgroundColor;
 
+  var _scaffoldKey;
+
   UndergroundScaffold({this.appBar, this.body, this.backgroundColor});
 
   @override
@@ -17,6 +19,7 @@ class UndergroundScaffold extends StatelessWidget {
       /// чтобы вёрстка не падала
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.white,
         appBar: appBar,
 
