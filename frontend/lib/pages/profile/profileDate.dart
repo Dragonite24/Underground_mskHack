@@ -4,6 +4,7 @@ import 'package:team_up/pages/profile/menuItems/projects.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets.dart';
+import 'menuItems/notifications.dart';
 import 'menuItems/resume.dart';
 import 'menuItems/teams.dart';
 
@@ -53,56 +54,106 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Column(
                             children: [
                               SizedBox(height: 15),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.asset(
-                                  'images/profile/erik.jpg',
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Колесников Семен',
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 20,
-                                        color: Color(0xFF333333))
-                                    .copyWith(fontFamily: Fonts().light),
-                              ),
-                              Text(
-                                'Россия, Ярославль',
-                                style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: Color(0xFF333333))
-                                    .copyWith(fontFamily: Fonts().light),
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
-                              RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 12,
-                                          color: Color(0xFF333333)),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text:
-                                                '+7(905)630-22-80 qwez-9@mail.ru',
-                                            style: TextStyle(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Notifications())),
+                                    child: Stack(
+                                      children: [
+                                        Icon(
+                                          Icons.notifications_rounded,
+                                          size: 25,
+                                        ),
+                                        Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: ClipRRect(
+                                            child: Container(
+                                              width: 12,
+                                              height: 12,
+                                              decoration: BoxDecoration(
+                                                  color: green,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Image.asset(
+                                          'images/profile/erik.jpg',
+                                          width: 80,
+                                          height: 80,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        'Колесников Семен',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
                                                 fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.w300,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 20,
+                                                color: Color(0xFF333333))
+                                            .copyWith(
+                                                fontFamily: Fonts().light),
+                                      ),
+                                      Text(
+                                        'Россия, Ярославль',
+                                        style: TextStyle(
+                                                fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: 12,
-                                                color: Color(0xFF16FF00))),
-                                      ])),
+                                                color: Color(0xFF333333))
+                                            .copyWith(
+                                                fontFamily: Fonts().light),
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
+                                      RichText(
+                                          textAlign: TextAlign.center,
+                                          text: TextSpan(
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 12,
+                                                  color: Color(0xFF333333)),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text:
+                                                        '+7(905)630-22-80 qwez-9@mail.ru',
+                                                    style: TextStyle(
+                                                        fontStyle:
+                                                            FontStyle.normal,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 12,
+                                                        color:
+                                                            Color(0xFF16FF00))),
+                                              ])),
+                                    ],
+                                  ),
+                                  Icon(null),
+                                ],
+                              ),
+                              SizedBox(height: 15),
                               SizedBox(
                                   height: MediaQuery.of(context).size.height *
                                       0.02),
