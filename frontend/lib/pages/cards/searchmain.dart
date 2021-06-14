@@ -54,8 +54,8 @@ class _SearchMain extends State<Cards>
             ),
           )
         : Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            height: double.infinity,
             child: Stack(
               children: [
                 Container(
@@ -73,112 +73,115 @@ class _SearchMain extends State<Cards>
                   ),
                 ),
                 appBar(),
-                cards(size),
+                SizedBox(
+                  child: cards(size),
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
               ],
             ),
           );
   }
 
-  Widget cards(size) => Column(
+  Widget cards(size) {
+    return /*Column(
         children: <Widget>[
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.12,
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0.0, 14.0),
-                    blurRadius: 15.0,
-                    color: Color(0x420C9E18),
-                  )
-                ],
-              ),
-              height: MediaQuery.of(context).size.height * 0.7,
-              width: MediaQuery.of(context).size.width * 0.85,
-              child: TinderSwapCard(
-                orientation: AmassOrientation.BOTTOM,
-                totalNum: dummyUserDataListInSearch.length,
-                stackNum: 3,
-                swipeEdge: 4.0,
-                maxWidth: MediaQuery.of(context).size.width,
-                maxHeight: MediaQuery.of(context).size.height * 0.85,
-                minWidth: MediaQuery.of(context).size.width * 0.84,
-                minHeight: MediaQuery.of(context).size.height * 0.7,
-                cardController: cardController,
-                cardBuilder: (context, index) {
-                  return Stack(
-                    children: <Widget>[
-                      PageView(
-                        controller: _pageController =
-                            PageController(initialPage: 0),
-                        children: _userProfile(size, index),
-                        scrollDirection: Axis.vertical,
-                      ),
-                      Positioned(
-                        top: 54,
-                        right: 36,
-                        child: _isLike != null &&
-                                !_isLike &&
-                                index == _currentIndex
-                            ? _likeOrDislikeIconOnPhoto(
-                                FontAwesomeIcons.ban, Colors.redAccent)
-                            : Container(),
-                      ),
-                      Positioned(
-                        top: 50,
-                        left: 40,
-                        child:
-                            _isLike != null && _isLike && index == _currentIndex
-                                ? _likeOrDislikeIconOnPhoto(
-                                    FontAwesomeIcons.thumbsUp, Colors.green)
-                                : Container(),
-                      )
-                    ],
-                  );
-                },
-                swipeUpdateCallback:
-                    (DragUpdateDetails details, Alignment align) {
-                  if (align.x < 0) {
-                    //Card is LEFT swiping
-                    if (align.x < -3) {
-                      _isLike = false;
-                    }
-                    if (-(align.x * 0.1) > 1) {
-                      _xPosition = 1;
-                    } else {
-                      _xPosition = -(align.x * 0.1);
-                    }
-                  } else if (align.x > 0) {
-                    //Card is RIGHT swiping
-                    if (align.x > 3) {
-                      _isLike = true;
-                    }
-                    if ((align.x * 0.1) > 1) {
-                      _xPosition = 1;
-                    } else {
-                      _xPosition = (align.x * 0.1);
-                    }
-                  } else {
-                    _xPosition = 0;
-                  }
-                },
-                swipeCompleteCallback:
-                    (CardSwipeOrientation orientation, int index) {
-                  print('orientation is $orientation and index is $index');
-                  if (orientation == CardSwipeOrientation.LEFT ||
-                      orientation == CardSwipeOrientation.RIGHT) {
-                    setState(() {
-                      _currentIndex = index + 1;
-                    });
-                    _pageController.jumpToPage(0);
-                  }
-                  _isLike = null;
-                },
-              ),
-            ),
-          ),
+          ),*/
+        Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0.0, 14.0),
+              blurRadius: 15.0,
+              color: Color(0x420C9E18),
+            )
+          ],
+        ),
+        height: MediaQuery.of(context).size.height * 0.7,
+        width: MediaQuery.of(context).size.width * 0.85,
+        child: TinderSwapCard(
+          orientation: AmassOrientation.BOTTOM,
+          totalNum: dummyUserDataListInSearch.length,
+          stackNum: 3,
+          swipeEdge: 4.0,
+          maxWidth: MediaQuery.of(context).size.width,
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          minWidth: MediaQuery.of(context).size.width * 0.84,
+          minHeight: MediaQuery.of(context).size.height * 0.7,
+          cardController: cardController,
+          cardBuilder: (context, index) {
+            return Stack(
+              children: <Widget>[
+                PageView(
+                  controller: _pageController = PageController(initialPage: 0),
+                  children: _userProfile(size, index),
+                  scrollDirection: Axis.vertical,
+                ),
+                Positioned(
+                  top: 54,
+                  right: 36,
+                  child: _isLike != null && !_isLike && index == _currentIndex
+                      ? _likeOrDislikeIconOnPhoto(
+                          FontAwesomeIcons.ban,
+                          Colors.redAccent,
+                        )
+                      : Container(),
+                ),
+                Positioned(
+                  top: 50,
+                  left: 40,
+                  child: _isLike != null && _isLike && index == _currentIndex
+                      ? _likeOrDislikeIconOnPhoto(
+                          FontAwesomeIcons.thumbsUp,
+                          Colors.green,
+                        )
+                      : Container(),
+                )
+              ],
+            );
+          },
+          swipeUpdateCallback: (DragUpdateDetails details, Alignment align) {
+            if (align.x < 0) {
+              //Card is LEFT swiping
+              if (align.x < -3) {
+                _isLike = false;
+              }
+              if (-(align.x * 0.1) > 1) {
+                _xPosition = 1;
+              } else {
+                _xPosition = -(align.x * 0.1);
+              }
+            } else if (align.x > 0) {
+              //Card is RIGHT swiping
+              if (align.x > 3) {
+                _isLike = true;
+              }
+              if ((align.x * 0.1) > 1) {
+                _xPosition = 1;
+              } else {
+                _xPosition = (align.x * 0.1);
+              }
+            } else {
+              _xPosition = 0;
+            }
+          },
+          swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
+            print('orientation is $orientation and index is $index');
+            if (orientation == CardSwipeOrientation.LEFT ||
+                orientation == CardSwipeOrientation.RIGHT) {
+              setState(() {
+                _currentIndex = index + 1;
+              });
+              _pageController.jumpToPage(0);
+            }
+            _isLike = null;
+          },
+        ),
+      ),
+      /*),
           Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
             child: Row(
@@ -214,8 +217,9 @@ class _SearchMain extends State<Cards>
               ],
             ),
           )
-        ],
-      );
+        ],*/
+    );
+  }
 
   Widget appBar() {
     return Positioned(
@@ -302,6 +306,8 @@ class _SearchMain extends State<Cards>
                 children: [
                   CircleAvatar(
                     radius: 30,
+                    backgroundImage:
+                        AssetImage("images/profile/underground.jpg"),
                   ),
                   SizedBox(width: 10),
                   Container(
@@ -312,7 +318,7 @@ class _SearchMain extends State<Cards>
                         Container(
                           width: 190,
                           child: Text(
-                            'UnderGround',
+                            ['UnderGround', 'Stinger', 'Another', 'Wiw'][index],
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontStyle: FontStyle.normal,
@@ -374,7 +380,12 @@ class _SearchMain extends State<Cards>
                         child: Column(
                           children: <Widget>[
                             Text(
-                              "Мы команда UnderGround! Участники и победители множества хакатонов. ",
+                              "Мы команда ${[
+                                'UnderGround',
+                                'Stinger',
+                                'Another',
+                                'Wiw'
+                              ][index]}! Участники и победители множества хакатонов. ",
                               style: TextStyle()
                                   .copyWith(fontFamily: Fonts().regular),
                             ),
@@ -409,8 +420,9 @@ class _SearchMain extends State<Cards>
                           children: <Widget>[
                             Text(
                               "2-е региональное и 4-е федеральное место хакатона 'Цифровой прорыв'. Первое региональное место хакатона 'ТехноХакатон'",
-                              style: TextStyle()
-                                  .copyWith(fontFamily: Fonts().regular),
+                              style: TextStyle().copyWith(
+                                fontFamily: Fonts().regular,
+                              ),
                             ),
                           ],
                         ),
@@ -438,14 +450,14 @@ class _SearchMain extends State<Cards>
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: <Widget>[
-                        projectList(),
+                        projectList(0),
                         SizedBox(width: 5),
-                        projectList(),
+                        projectList(1),
                         SizedBox(width: 5),
-                        projectList(),
+                        projectList(2),
                         SizedBox(width: 5),
-                        SizedBox(width: 5),
-                        projectList(),
+                        // SizedBox(width: 5),
+                        projectList(3),
                       ],
                     ),
                   ),
@@ -474,7 +486,7 @@ class _SearchMain extends State<Cards>
     return _returnWidgetList;
   }
 
-  Widget projectList() {
+  Widget projectList(int index) {
     return InkWell(
       onTap: () {
         print("popo");
@@ -487,12 +499,32 @@ class _SearchMain extends State<Cards>
           child: Column(
             children: [
               Container(
-                color: Colors.red,
+                child: Image.asset(
+                  "images/backgrounds/buisness.jpg",
+                  fit: BoxFit.cover,
+                ),
                 height: 70,
+                width: double.infinity,
               ),
               Container(
-                color: Colors.green,
+                color: Colors.grey[100],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text([
+                        "Крутой проект",
+                        "Замечательный прое",
+                        "Супер проект",
+                        "Масштабный проект"
+                      ][index]),
+                    )
+                  ],
+                ),
                 height: 40,
+                width: double.infinity,
               ),
             ],
           ),
