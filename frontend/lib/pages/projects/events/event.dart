@@ -7,6 +7,7 @@ import 'package:team_up/models/event.dart';
 
 import '../../../const.dart';
 import '../../../http.dart';
+import '../../../snackbar.dart';
 import '../../../widgets.dart';
 
 import 'package:add_2_calendar/add_2_calendar.dart' as cal;
@@ -315,16 +316,8 @@ class _EventCardState extends State<EventCard> {
                     SizedBox(height: 20),
                     GestureDetector(
                       onTap: () async {
-                        Http().joinEvent(index).then((value) => null);
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (BuildContext context) {
-                        //       return Center(
-                        //         child: CircularProgressIndicator(),
-                        //       );
-                        //     });
-                        // await loginAction();
-                        // Navigator.pop(context);
+                        loginAction().then((value) => Snackbar.show(
+                            context, 'Успешно!. ожидайте подтверждения'));
                       },
                       child: Center(
                         child: Container(

@@ -4,6 +4,7 @@ import 'package:team_up/models/projects.dart';
 
 import '../../../const.dart';
 import '../../../http.dart';
+import '../../../snackbar.dart';
 import '../../../widgets.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -145,8 +146,9 @@ class _ProjectCardState extends State<ProjectCard> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 40,
                         child: GestureDetector(
-                          onTap: () {
-                            // Подать заявку
+                          onTap: () async {
+                            loginAction().then((value) => Snackbar.show(
+                                context, 'Успешно!. ожидайте подтверждения'));
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -299,4 +301,8 @@ class _ProjectCardState extends State<ProjectCard> {
           ),
         ),
       );
+  Future<bool> loginAction() async {
+    await new Future.delayed(const Duration(seconds: 2));
+    return true;
+  }
 }
