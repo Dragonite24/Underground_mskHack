@@ -52,4 +52,6 @@ urlpatterns = [
     path('lounge/update/<int:pk>', LoungeUpdateView.as_view()),
     path('lounge/all', LoungeListView.as_view()),
     path('lounge/new', LoungeCreateView.as_view()),
+
+    # path('recomms/<int:user>', recommend_team, name="recommend_team")
 ]

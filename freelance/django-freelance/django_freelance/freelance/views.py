@@ -199,3 +199,16 @@ class LoungeCreateView(generics.CreateAPIView):
     queryset = Lounge.objects.all()
     serializer_class = LoungeSerializer
 
+def recommend_team(request, user_id):
+    data = [
+        [0, 1, 2, 2],
+        [2, 1, 1, 1],
+        [0, 2, 1, 1],
+        [2, 2, 1, 0],
+    ]
+    return json.dumps(
+        getRecomms(
+            data,
+            user_id
+        )
+    )
