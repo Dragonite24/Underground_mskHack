@@ -1,0 +1,88 @@
+{
+  materials: [
+    {
+      name: 'ArcticFox_Posed_initialShadingGroup',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'ArcticFox_Diffuse',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 0.96994800000000003,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: null,
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: '../sampledata/ArcticFox_Posed.gltf',
+    name: 'ArcticFox_Posed',
+    recenter: 'root',
+    scale: 0.18886700000000001,
+  },
+  samplers: [
+    {
+      file: '../sampledata\\ArcticFox_Diffuse.png',
+      name: 'ArcticFox_Diffuse',
+      pipeline_name: 'ArcticFox_Diffuse.png',
+    },
+  ],
+  version: '0.54:2',
+}
