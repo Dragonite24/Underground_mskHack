@@ -31,8 +31,14 @@ class _TeamsState extends State<Teams> {
         children: [
           Positioned(
             top: 5,
-            child: CircleAvatar(
-              radius: 40,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                'images/profile/underground.jpg',
+                width: 90,
+                height: 90,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(

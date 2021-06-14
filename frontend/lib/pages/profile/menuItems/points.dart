@@ -53,12 +53,12 @@ class _PointsState extends State<Points> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'На баллы можно',
+                          'Ваши баллы',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         SizedBox(height: 6),
                         Text(
-                          'Описаниеееее',
+                          'Эти баллы вы можете обменать на предложения ниже',
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                       ],

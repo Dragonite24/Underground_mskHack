@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:team_up/models/projects.dart';
+import 'package:team_up/pages/projects/project/projectCard.dart';
 
 import '../../../const.dart';
+import '../../../http.dart';
+import '../../../indicator.dart';
+import '../../../widgets.dart';
 
 class ProjectItem extends StatefulWidget {
   const ProjectItem({Key key}) : super(key: key);
@@ -10,91 +15,99 @@ class ProjectItem extends StatefulWidget {
 }
 
 class _ProjectItemState extends State<ProjectItem> {
+  List<Projects> projects;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SafeArea(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                alignment: Alignment.center,
-              ),
-              projectCard('Один', 'Описание',
-                  'https://cdn5.zp.ru/job/attaches/2018/08/84/a9/84a905e003a615c706f0b6d657ce940e.jpg'),
-              projectCard('Два', 'Описание',
-                  'https://st4.depositphotos.com/1046751/23974/i/950/depositphotos_239743782-stock-photo-business-team-discussing-information-from.jpg'),
-              projectCard('Три', 'Описание',
-                  'https://hub.ldpr.ru/media/images/yaroslavl/8817f6a0da39bcf571073e34a03db69ea91d1bd586718309a8fcab499f67dc01.jpg'),
-              projectCard('Четыре', 'Описание',
-                  'https://terve.su/wp-content/uploads/2018/08/kak-prestat-speshit-i-nachat-rabotat-1.jpg'),
-            ],
-          ),
-        ),
-      ),
+    return FutureBuilder<List<Projects>>(
+      future: Http().getListProjects(),
+      builder: (BuildContext context, AsyncSnapshot<List<Projects>> snapshot) {
+        if (snapshot.hasError) {
+          return UndergroundNoConnection();
+        } else if (snapshot.hasData) {
+          projects = snapshot.data;
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: 1670,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                  itemCount: projects.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      projectCard(index)),
+            ),
+          );
+        } else {
+          return Center(
+            child: Indicator.circle,
+          );
+        }
+      },
     );
   }
 
-  Widget projectCard(String name, String descr, String url) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Stack(
-          children: [
-            Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0.0, 10.0),
-                    blurRadius: 10.0,
-                    color: Color(0x42000000),
-                  )
-                ],
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage("$url"),
+  Widget projectCard(index) => ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        child: GestureDetector(
+          onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => ProjectCard(index))),
+          child: Column(
+            children: [
+              Container(
+                height: 211,
+                width: double.infinity,
+                child: Container(
+                  child: Image.asset(
+                    "images/backgrounds/buisness.jpg",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-                bottom: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15)),
-                  ),
-                )),
-            Positioned(
-                bottom: 65,
-                left: 15,
-                child: Text(
-                  name,
-                  style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          color: Color(0xFF333333))
-                      .copyWith(fontFamily: Fonts().regular),
-                )),
-            Positioned(
-                bottom: 45,
-                left: 15,
-                child: Text(
-                  descr,
-                  style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600,
+              Container(
+                color: Colors.white,
+                height: 121,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Text(
+                        projects[index].name,
+                        style: TextStyle(
+                          fontFamily: Fonts().medium,
                           fontSize: 16,
-                          color: Color(0xFF333333))
-                      .copyWith(fontFamily: Fonts().thin),
-                )),
-          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        bottom: 12,
+                        top: 6,
+                      ),
+                      child: Text(
+                        projects[index].team.desc.toString(),
+                        style: TextStyle(
+                          fontFamily: Fonts().regular,
+                          fontSize: 14,
+                          color: black.withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15)
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }
