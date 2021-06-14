@@ -75,8 +75,14 @@ class _ProjectCardState extends State<ProjectCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CircleAvatar(
-                            radius: 40,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.asset(
+                              'images/profile/underground.jpg',
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           SizedBox(height: 15),
                           Container(
@@ -208,13 +214,12 @@ class _ProjectCardState extends State<ProjectCard> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                          "images/profile/underground.jpg",
-                                        ),
-                                        radius: 45,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Container(
+                                        color: Colors.black,
+                                        width: 90,
+                                        height: 90,
                                       ),
                                     ),
                                     Padding(

@@ -18,7 +18,10 @@ class _ChatModelListState extends State<ChatModelList> {
     return ListTile(
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
-        child: CircleAvatar(radius: 40),
+        child: CircleAvatar(
+          radius: 40,
+          child: Image.asset('images/profile/erik.jpg'),
+        ),
       ),
       title: Text(widget.title),
       subtitle: Text(widget.subtitle),
