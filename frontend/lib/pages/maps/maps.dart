@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:team_up/pages/profile/menuItems/createEvent.dart';
 
 class MapsView extends StatefulWidget {
   const MapsView({Key key}) : super(key: key);
@@ -40,7 +41,10 @@ class _MapsViewState extends State<MapsView> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         onPressed: () {
-          // TODO
+          Navigator.push(
+            context,
+            MaterialPageRoute<void>(builder: (context) => CreateEvent()),
+          );
         },
         child: Ink(
           decoration: const BoxDecoration(
